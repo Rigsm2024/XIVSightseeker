@@ -1,3 +1,5 @@
+-- CREATE DATABASE xivsightseeker;
+
 CREATE TABLE areas (
     area_id SERIAL PRIMARY KEY,
     area_key VARCHAR(50) NOT NULL,
@@ -6,7 +8,7 @@ CREATE TABLE areas (
     area_image_url VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE weather (
+CREATE TABLE weathers (
     weather_id SERIAL PRIMARY KEY,
     weather_key VARCHAR(50) NOT NULL,
     weather_name_jp VARCHAR(50) NOT NULL,
@@ -34,15 +36,15 @@ CREATE TABLE sightseeing_logs (
     in_game_start_time TIMESTAMP NOT NULL,
     in_game_end_time TIMESTAMP NOT NULL,
     emote_id INTEGER REFERENCES emotes(emote_id),
-    weather1_id INTEGER REFERENCES weather(weather_id),
-    weather2_id INTEGER REFERENCES weather(weather_id),
+    weather1_id INTEGER REFERENCES weathers(weather_id),
+    weather2_id INTEGER REFERENCES weathers(weather_id),
     description_id INTEGER REFERENCES sightseeing_log_descriptions(description_id)
 );
 
 CREATE TABLE weather_chances (
     chance_id SERIAL PRIMARY KEY,
     area_id INTEGER REFERENCES areas(area_id),
-    weather_id INTEGER REFERENCES weather(weather_id),
+    weather_id INTEGER REFERENCES weathers(weather_id),
     chance INTEGER,
-    chanace_index INTEGER
+    chance_index INTEGER
 );
