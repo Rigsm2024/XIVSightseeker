@@ -95,6 +95,7 @@ func (r *DBRepository) LoadWeatherChances() ([]WeatherChance, error) {
         `
     rows, err := r.db.Query(query)
     if err != nil {
+        log.Print(err)
         return nil, err
     }
     defer rows.Close()
@@ -108,6 +109,7 @@ func (r *DBRepository) LoadWeatherChances() ([]WeatherChance, error) {
             &wc.Chance, 
             &wc.ChanceIndex)
         if err != nil {
+            log.Print(err)
             return nil, err
         }
         weatherChances = append(weatherChances, wc)
@@ -122,13 +124,11 @@ func (r *DBRepository) LoadWeatherChances() ([]WeatherChance, error) {
 // Create DBRepository instance
 func NewDBRepository() *DBRepository {
     // Make connection with db
-    //dsn := "host=" + os.Getenv("DB_HOST") + " user=" + os.Getenv("DB_USER") + " password=" + os.Getenv("DB_PASSWORD") + " dbname=" + os.Getenv("DB_NAME") + " port=" + os.Getenv("DB_PORT") + " sslmode=disable"
     connStr := "host=" + os.Getenv("DB_HOST") + " user=" + os.Getenv("DB_USER") + " password=" + os.Getenv("DB_PASSWORD") + " dbname=" + os.Getenv("DB_NAME") + " port=" + os.Getenv("DB_PORT") + " sslmode=disable"
     db, err := sql.Open("postgres", connStr)
     if err != nil {
         log.Fatal(err)
     }
-    //defer db.Close()
 
     return &DBRepository {
 		db: db,

@@ -16,7 +16,7 @@ func main() {
     // Setup GIN
     r := gin.Default()
 
-    // CORS設定
+    // Setup CORS
     r.Use(cors.New(cors.Config{
         AllowOrigins:     []string{"http://localhost:3000"},
         AllowMethods:     []string{"GET", "POST", "HEAD"},  
@@ -34,7 +34,7 @@ func main() {
     r.GET("/SightseeingLogs", func(c *gin.Context) {
         logs, err := repos.LoadSightseeingLogs()
         if err != nil {
-            c.JSON(500, "Cannot load data")
+            c.JSON(500, "Failed to load data!")
             return
         }
 
@@ -45,7 +45,7 @@ func main() {
     r.GET("/RawWeatherChances", func(c *gin.Context) {
         chances, err := repos.LoadWeatherChances()
         if err != nil {
-            c.JSON(500, "Cannot load data")
+            c.JSON(500, "Failed to load data!")
             return
         }
 
