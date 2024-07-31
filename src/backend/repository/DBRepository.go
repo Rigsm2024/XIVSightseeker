@@ -7,7 +7,7 @@ import (
     "os"
 )
 
-// Repository type DB, and it has functions of Repository.
+// Repository type DB, and it has functions of IRepository.
 type DBRepository struct {
 	db *sql.DB
 }
@@ -42,36 +42,39 @@ func (r *DBRepository) LoadSightseeingLogs() ([]SightseeingLog, error) {
         `
     rows, err := r.db.Query(query)
     if err != nil {
+        log.Print(err)
         return nil, err
     }
     defer rows.Close()
 
     var logs []SightseeingLog
     for rows.Next() {
-        var log SightseeingLog
+        var slog SightseeingLog
         var weather2Name sql.NullString
         err := rows.Scan(
-            &log.ItemNo, 
-            &log.AreaName, 
-            &log.CoordinateX, 
-            &log.CoordinateY,
-            &log.StartTime, 
-            &log.EndTime, 
-            &log.EmoteName, 
-            &log.Weather1Name,
+            &slog.ItemNo, 
+            &slog.AreaName, 
+            &slog.CoordinateX, 
+            &slog.CoordinateY,
+            &slog.StartTime, 
+            &slog.EndTime, 
+            &slog.EmoteName, 
+            &slog.Weather1Name,
             &weather2Name, 
-            &log.Description)
+            &slog.Description)
         if err != nil {
+            log.Print(err)
             return nil, err
         }
         if weather2Name.Valid {
-            log.Weather2Name = &weather2Name.String
+            slog.Weather2Name = &weather2Name.String
         } else {
-            log.Weather2Name = nil
+            slog.Weather2Name = nil
         }
-        logs = append(logs, log)
+        logs = append(logs, slog)
     }
     if err = rows.Err(); err != nil {
+        log.Print(err)
         return nil, err
     }
     return logs, nil
@@ -115,6 +118,7 @@ func (r *DBRepository) LoadWeatherChances() ([]WeatherChance, error) {
         weatherChances = append(weatherChances, wc)
     }
     if err = rows.Err(); err != nil {
+        log.Print(err)
         return nil, err
     }
     return weatherChances, nil

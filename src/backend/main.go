@@ -5,12 +5,14 @@ import (
     "github.com/gin-contrib/cors"
     "github.com/gin-gonic/gin"
     "backend/repository"
+    "backend/weather"
 )
 
 func main() {
     // ============
     // Setup Repository
     repos := repository.NewDBRepository()
+    forecaster := weather.NewWeatherForecaster(repos)
 
     // ============
     // Setup GIN
@@ -50,6 +52,12 @@ func main() {
         }
 
         c.JSON(200, chances)
+    })
+
+    r.GET("/WeatherReports", func(c *gin.Context) {
+        reports := forecaster.GetWeatherReports()
+
+        c.JSON(200, reports)
     })
 
     r.Run(":8080")

@@ -27,7 +27,7 @@ type WeatherChance struct {
 }
 
 // [Interface] Data provider.
-type Repository interface {
+type IRepository interface {
 	LoadSightseeingLogs() ([]SightseeingLog, error)
 	LoadWeatherChances() ([]WeatherChance, error)
 }
