@@ -1,26 +1,38 @@
 
+import { SightseeingLog, WeatherReport } from "../features/dto"
+
+interface SightseekerProps {
+  logs: SightseeingLog[];
+  reports: WeatherReport[];
+}
 
 export async function getServerSideProps() {
-  const res = await fetch('http://backend:8080/ping', {
+  // Get sightseeing logs data from server
+  const resLogs = await fetch('http://backend:8080/SightseeingLogs', {
     method: 'GET',
     mode: 'cors',
   })
-  console.log(res)
-  const answer = await res.json()
-  console.log(answer)
+  const logs = await resLogs.json()
 
-  return { props: {answer}}
+  // Get weather reports data from server
+  const resReports = await fetch('http://backend:8080/WeatherReports', {
+    method: 'GET',
+    mode: 'cors',
+  })
+  const reports = await resReports.json()
+  
+  return { props: { logs, reports } }
 }
 
 
-export default function PingWindow({ answer }) {
-  console.log(answer)
+export default function index({ logs, reports }: SightseekerProps) {
+  //console.log(logs)
+  //console.log(reports)
   return (
     <div>
-      <h1>PingWindows</h1>
+      <h1>XIVSightseeker</h1>
       <div>
-        <p>Hi backend. Are you go server? Ping?</p>
-        <p>Answer: {answer.message}</p>
+        <div>hellow world</div>
       </div>
     </div>
   )
