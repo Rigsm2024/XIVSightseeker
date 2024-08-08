@@ -10,11 +10,13 @@ type EorzeanTime struct {
 	hours int
 	days int
 	chunk int
+	chunkedUnixSeconds int
 }
 
 type IWeatherAlgorithm interface {
 	GetWeatherChanceAt(unixSeconds int) int
 	GetWeather(chance int, weatherDatas []repository.WeatherChance) string
+	GetEorzeanTimeAt(unixSeconds int) *EorzeanTime
 }
 
 // =====
@@ -23,7 +25,7 @@ type WeatherAlgorithm struct {}
 // Create "Weather chance" value from unix seconds
 // Returns 0-99 int value
 func (wa *WeatherAlgorithm) GetWeatherChanceAt(unixSeconds int) int {
-	eorzeanTime := wa.getEorzeanTimeAt(unixSeconds)
+	eorzeanTime := wa.GetEorzeanTimeAt(unixSeconds)
 
 	// weatherChance calculation algorithm
 	seed := eorzeanTime.days * 100 + eorzeanTime.chunk
@@ -55,7 +57,7 @@ func (wa *WeatherAlgorithm) GetWeather(chance int, weatherDatas []repository.Wea
 }
 
 // Convert a real unix seconds to an Eorzean time.
-func (wa *WeatherAlgorithm) getEorzeanTimeAt(unixSeconds int) *EorzeanTime {
+func (wa *WeatherAlgorithm) GetEorzeanTimeAt(unixSeconds int) *EorzeanTime {
 	floatSeconds := float64(unixSeconds)
 
 	// 1 Eorzean hour = 175 seconds
@@ -66,10 +68,16 @@ func (wa *WeatherAlgorithm) getEorzeanTimeAt(unixSeconds int) *EorzeanTime {
 	timeChunk := math.Mod(eorzeanHours, 24) - math.Mod(eorzeanHours, 8)
     timeChunk = math.Mod(timeChunk + 8, 24)
 
+    // Calculate the start time of the current chunk in Eorzean hours
+    chunkStartEorzeanHours := math.Floor(eorzeanHours / 8) * 8
+    // Convert Eorzean hours back to Unix seconds
+    chunkedUnixSeconds := int(chunkStartEorzeanHours * 175)
+
 	return &EorzeanTime {
 		hours: int(eorzeanHours),
 		days: int(eorzeanDays),
 		chunk: int(timeChunk),
+		chunkedUnixSeconds: chunkedUnixSeconds,
 	}
 }
 

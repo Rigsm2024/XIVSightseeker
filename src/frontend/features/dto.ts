@@ -1,12 +1,15 @@
 export interface SightseeingLog {
     ItemNo: number;
+    AreaKey: string;
     AreaName: string;
     CoordinateX: number;
     CoordinateY: number;
-    StartTime: string;
-    EndTime: string;
+    StartHour: number;
+    EndHour: number;
     EmoteName: string;
+    Weather1Key: string;
     Weather1Name: string;
+    Weather2Key?: string;
     Weather2Name?: string;
     Description: string;
 }
@@ -19,5 +22,12 @@ export interface WeatherReport {
 
 export interface ForecastPeriod {
     WeatherKey: string;
-    StartTime: number;
+    When: EorzeanTime;
+}
+
+export interface EorzeanTime {
+    hours: number
+	days: number
+	chunk: number
+    chunkedUnixSeconds: number
 }

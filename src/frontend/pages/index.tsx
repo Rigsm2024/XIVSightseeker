@@ -1,5 +1,6 @@
 
 import { SightseeingLog, WeatherReport } from "../features/dto"
+import { GuidedSightseeingLog, GetGuidedSightseeingLogs } from "../features/sightseeingGuide"
 
 interface SightseekerProps {
   logs: SightseeingLog[];
@@ -26,8 +27,9 @@ export async function getServerSideProps() {
 
 
 export default function index({ logs, reports }: SightseekerProps) {
-  //console.log(logs)
-  //console.log(reports)
+  const guided = GetGuidedSightseeingLogs(logs, reports)
+  console.log(guided)
+
   return (
     <div>
       <h1>XIVSightseeker</h1>

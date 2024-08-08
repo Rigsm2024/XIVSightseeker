@@ -217,27 +217,30 @@ VALUES
     (21, 6, 5, 6)
 ;
 
-
---　まだサンプル
 -- Insert data into emotes table
 INSERT INTO emotes (emote_id, emote_name_jp, emote_name_en, emote_icon_url)
 VALUES
     (1, '見わたす', 'Lookout', ''),
-    (2, '祈る', 'Pray', '')
+    (2, '祈る', 'Pray', ''),
+    (3, '座る', 'Sit', ''),
+    (4, '敬礼する', 'Salute', ''),
+    (5, 'なぐさめる', 'Comfort', ''),
+    (6, '指さす', 'Point', ''),
+    (7, '活を入れる', 'Psych', '')
 ;
 
 -- Insert data into sightseeing_log_descriptions table
 INSERT INTO sightseeing_log_descriptions (description_id, description_jp, description_en)
 VALUES
-    (1, '項目1の説明', 'Description for No.1'),
-    (2, '項目2の説明', 'Description for No.2'),
-    (3, '項目3の説明', 'Description for No.3')
+    (1, '――ある商人が見た景色。\n眼下を見やれば、そこには赤き帆の軍艦が三隻。海都「リムサ・ロミンサ」の底力を感じた。', 'Description for No.1'),
+    (2, '――ある海賊が見た景色。\n酒を飲めば気分は大物。ヤバい奴らの縄張りで、大物気取りで港を一望。翌日、目が覚めたら吊されていた。', 'Description for No.2'),
+    (3, '――ある船乗りが見た景色。\n出漁前の俺だけの儀式。朝日届かぬ薄暗い洞穴で、逝った仲間に黙祷する。静かな雨音を、鎮魂歌に代えて。', 'Description for No.3')
 ;
 
 -- Insert data into sightseeing_logs table
-INSERT INTO sightseeing_logs (area_id, coordinate_x, coordinate_y, in_game_start_time, in_game_end_time, emote_id, weather1_id, weather2_id, description_id)
+INSERT INTO sightseeing_logs (item_no, area_id, coordinate_x, coordinate_y, in_game_start_hour, in_game_end_hour, emote_id, weather1_id, weather2_id, description_id)
 VALUES
-    (1, 35.6895, 139.6917, '2024-07-01 10:00:00', '2024-07-01 11:00:00', 1, 4, NULL, 1),
-    (2, 34.0522, -118.2437, '2024-07-02 14:00:00', '2024-07-02 15:30:00', 1, 1, 2, 2),
-    (3, 51.5074, -0.1278, '2024-07-03 09:00:00', '2024-07-03 10:00:00', 2, 6, NULL, 3)
+    (1, 1, 9.5, 7.8, '08', '12', 1, 1, 2, 1),
+    (2, 1, 7.0, 15.1, '18', '05', 1, 1, 2, 2),
+    (3, 2, 20.3, 19.1, '05', '08', 2, 5, NULL, 3)
 ;

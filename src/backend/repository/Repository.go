@@ -1,19 +1,18 @@
 package repository
 
-import (
-	"time"
-)
-
 // Data for sightseeing logs
 type SightseeingLog struct {
 	ItemNo         uint
+	AreaKey        string
 	AreaName       string
 	CoordinateX    float64
 	CoordinateY    float64
-	StartTime      time.Time
-	EndTime        time.Time
+	StartHour      uint
+	EndHour        uint
 	EmoteName      string
+	Weather1Key    string
 	Weather1Name   string
+	Weather2Key    *string // Nullable
 	Weather2Name   *string // Nullable
 	Description    string
 }

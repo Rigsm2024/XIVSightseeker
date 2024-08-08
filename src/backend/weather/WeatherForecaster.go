@@ -16,7 +16,7 @@ type WeatherReport struct {
 
 type ForecastPeriod struct {
 	WeatherKey string
-	StartTime  int
+	When int
 }
 
 type IWeatherForecaster interface {
@@ -52,9 +52,10 @@ func (wf *WeatherForecaster) GetWeatherReports() []WeatherReport {
 		for _, report := range weatherReports {
 			forecastedWeather := wf.algo.GetWeather(weatherChance, chanceMap[report.AreaKey])
 
+			eTime := wf.algo.GetEorzeanTimeAt(periodicSeconds[period])
 			report.Forecasts[period] = ForecastPeriod {
 				WeatherKey: forecastedWeather,
-				StartTime: periodicSeconds[period],	// TBD: what data should be contained
+				When: eTime.chunkedUnixSeconds,
 			}
 		}
 	}

@@ -17,13 +17,16 @@ func (r *DBRepository) LoadSightseeingLogs() ([]SightseeingLog, error) {
     query := `
         SELECT 
             sl.item_no, 
+            a.area_key, 
             a.area_name_jp, 
             sl.coordinate_x, 
             sl.coordinate_y,
-            sl.in_game_start_time, 
-            sl.in_game_end_time, 
+            sl.in_game_start_hour, 
+            sl.in_game_end_hour, 
             e.emote_name_jp,
+            w1.weather_key, 
             w1.weather_name_jp, 
+            w2.weather_key, 
             w2.weather_name_jp, 
             d.description_jp
         FROM 
@@ -50,25 +53,31 @@ func (r *DBRepository) LoadSightseeingLogs() ([]SightseeingLog, error) {
     var logs []SightseeingLog
     for rows.Next() {
         var slog SightseeingLog
+        var weather2Key sql.NullString
         var weather2Name sql.NullString
         err := rows.Scan(
             &slog.ItemNo, 
+            &slog.AreaKey, 
             &slog.AreaName, 
             &slog.CoordinateX, 
             &slog.CoordinateY,
-            &slog.StartTime, 
-            &slog.EndTime, 
+            &slog.StartHour, 
+            &slog.EndHour, 
             &slog.EmoteName, 
+            &slog.Weather1Key,
             &slog.Weather1Name,
+            &weather2Key, 
             &weather2Name, 
             &slog.Description)
         if err != nil {
             log.Print(err)
             return nil, err
         }
-        if weather2Name.Valid {
+        if weather2Key.Valid {
+            slog.Weather2Key = &weather2Key.String
             slog.Weather2Name = &weather2Name.String
         } else {
+            slog.Weather2Key = nil
             slog.Weather2Name = nil
         }
         logs = append(logs, slog)
