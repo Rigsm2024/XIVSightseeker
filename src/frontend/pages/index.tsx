@@ -28,7 +28,26 @@ export async function getServerSideProps() {
 
 export default function index({ logs, reports }: SightseekerProps) {
   const guided = GetGuidedSightseeingLogs(logs, reports)
-  console.log(guided)
+  const sorted = guided
+    .sort((a, b) => {
+      if (a.Phase != b.Phase) {
+        return a.Phase - b.Phase
+      }
+      
+      if (a.RemainingSeconds != b.RemainingSeconds) {
+        return a.RemainingSeconds - b.RemainingSeconds
+      }
+
+      return a.ItemNo - b.ItemNo
+    })
+    .map(x => ({
+      no: x.ItemNo,
+      area: x.AreaName,
+      phase: x.Phase,
+      res: x.RemainingSeconds,
+      des: x.Weather1Name + ": " + x.StartHour + "-" + x.EndHour
+    }))
+  console.log(sorted)
 
   return (
     <div>
