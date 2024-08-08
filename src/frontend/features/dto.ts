@@ -22,12 +22,5 @@ export interface WeatherReport {
 
 export interface ForecastPeriod {
     WeatherKey: string;
-    When: EorzeanTime;
-}
-
-export interface EorzeanTime {
-    hours: number
-	days: number
-	chunk: number
-    chunkedUnixSeconds: number
+    When: number;
 }
