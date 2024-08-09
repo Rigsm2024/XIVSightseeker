@@ -30,12 +30,14 @@ export function GetGuidedSightseeingLogs(logs: SightseeingLog[], reports: Weathe
     const currentEorzeanTime = ConvertToEorzeanTime(currentUnixSeconds)
     const forecastCount = reports[0].Forecasts.length
 
+    console.log('Forecast weathers at ET' + currentEorzeanTime.hours % 24)
+
     const guideds = logs.map(log => {
         // Check when are they achievable
         const weatherAchievables = GetAchievableTimesByWeather(log, reports)
         const timeAchievables = GetAchievableTimesByLog(log, currentEorzeanTime, forecastCount)
         const achievables = GetLogicalAnd(weatherAchievables, timeAchievables)
-        
+
         // Calculate phase and remaining time
         const isAchievable = achievables.length > 0
         const isCurrentlyAchievable = isAchievable && achievables[0].start <= currentUnixSeconds
@@ -99,16 +101,18 @@ function GetAchievableTimesByWeather(log: SightseeingLog, reports: WeatherReport
 function GetAchievableTimesByLog(log: SightseeingLog, startTime: EorzeanTime, days: number): AchievableTime[] {
     const startEorzeanDaysUnixSeconds = startTime.days * OneEorzeanDaySeconds
     const crossesMidnight = log.StartHour > log.EndHour
+    const isAM = startTime.hours % 24 < 12
 
     return Array.from({ length: days })
         .map((_, index) => {
             const baseTime = startEorzeanDaysUnixSeconds + index * OneEorzeanDaySeconds
-            const startTime = baseTime + log.StartHour * OneEorzeanHourSeconds
+            let startTime = baseTime + log.StartHour * OneEorzeanHourSeconds
             let endTime = baseTime + log.EndHour * OneEorzeanHourSeconds
             if (crossesMidnight)
             {
-                // In the case of like 18-05, end time have to be added 24 eorzean hour
-                endTime += OneEorzeanDaySeconds
+                // In the case of like 18-05, startTime or endTime have to be modified
+                startTime -= isAM ? OneEorzeanDaySeconds : 0
+                endTime += !isAM ? OneEorzeanDaySeconds : 0
             }
 
             return {
