@@ -1,8 +1,10 @@
 
 export interface EorzeanTime {
+    hour: number
     hours: number
 	days: number
 	chunk: number
+    source: number
 }
 
 export function ConvertToEorzeanTime(unixSeconds: number): EorzeanTime {
@@ -15,8 +17,10 @@ export function ConvertToEorzeanTime(unixSeconds: number): EorzeanTime {
     timeChunk = (timeChunk + 8) % 24;
 
     return {
+        hour: eorzeanHours % 24,
         hours: eorzeanHours,
         days: eorzeanDays,
         chunk: timeChunk,
+        source: unixSeconds
     };
 }

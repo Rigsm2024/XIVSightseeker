@@ -1,6 +1,8 @@
 
 import { SightseeingLog, WeatherReport } from "../features/dto"
-import { GuidedSightseeingLog, GetGuidedSightseeingLogs } from "../features/sightseeingGuide"
+import { GetGuidedSightseeingLogs } from "../features/sightseeingGuide"
+import SightHeader from "../components/header"
+import SightseeingLogs from "../components/sightseeingLogs"
 
 interface SightseekerProps {
   logs: SightseeingLog[];
@@ -40,21 +42,19 @@ export default function index({ logs, reports }: SightseekerProps) {
 
       return a.ItemNo - b.ItemNo
     })
-    .map(x => ({
-      no: x.ItemNo,
-      area: x.AreaName,
-      phase: x.Phase,
-      res: x.RemainingSeconds,
-      des: x.Weather1Name + ": " + x.StartHour + "-" + x.EndHour
-    }))
-  console.log(sorted)
+    
+  // console.log(sorted.map(x => ({
+  //   no: x.ItemNo,
+  //   area: x.AreaName,
+  //   phase: x.Phase,
+  //   res: x.RemainingSeconds,
+  //   des: x.Weather1Name + ": " + x.StartHour + "-" + x.EndHour
+  // })))
 
   return (
-    <div>
-      <h1>XIVSightseeker</h1>
-      <div>
-        <div>hellow world</div>
-      </div>
+    <div className='container m-auto inset-x-0'>
+      <SightHeader />
+      <SightseeingLogs logs={sorted}/>
     </div>
   )
 }

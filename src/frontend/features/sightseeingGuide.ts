@@ -16,8 +16,11 @@ export interface GuidedSightseeingLog {
     CoordinateY: number;
     StartHour: number;
     EndHour: number;
+    EmoteId: number;
     EmoteName: string;
+    Weather1Key: string;
     Weather1Name: string;
+    Weather2Key?: string;
     Weather2Name?: string;
     Description: string;
     Phase: EAchievementPhase;
@@ -53,6 +56,12 @@ export function GetGuidedSightseeingLogs(logs: SightseeingLog[], reports: Weathe
                 phase = EAchievementPhase.SoonAchievable
                 remainingSeconds = achievables[0].start - currentUnixSeconds
             }
+
+            // Debugging
+            if (remainingSeconds < 0) {
+                console.warn('Something is wrong! remainingSeconds: ' + remainingSeconds)
+                console.warn(`[${log.ItemNo}]${log.AreaKey}, ${log.Weather1Key}${log.StartHour}-${log.EndHour}, phase: ${phase}`)
+            }
         }
 
         return {
@@ -62,8 +71,11 @@ export function GetGuidedSightseeingLogs(logs: SightseeingLog[], reports: Weathe
             CoordinateY: log.CoordinateY,
             StartHour: log.StartHour,
             EndHour: log.EndHour,
+            EmoteId: log.EmoteId,
             EmoteName: log.EmoteName,
+            Weather1Key: log.Weather1Key,
             Weather1Name: log.Weather1Name,
+            Weather2Key: log.Weather2Key,
             Weather2Name: log.Weather2Name,
             Description: log.Description,
             Phase: phase,
@@ -99,20 +111,19 @@ function GetAchievableTimesByWeather(log: SightseeingLog, reports: WeatherReport
 
 // Returns the times within sightseeing logs requirement
 function GetAchievableTimesByLog(log: SightseeingLog, startTime: EorzeanTime, days: number): AchievableTime[] {
-    const startEorzeanDaysUnixSeconds = startTime.days * OneEorzeanDaySeconds
+    // Start day should be get back one day for crossing midnight pattern
+    const startEorzeanDaysUnixSeconds = (startTime.days - 1) * OneEorzeanDaySeconds
     const crossesMidnight = log.StartHour > log.EndHour
-    const isAM = startTime.hours % 24 < 12
 
     return Array.from({ length: days })
         .map((_, index) => {
             const baseTime = startEorzeanDaysUnixSeconds + index * OneEorzeanDaySeconds
-            let startTime = baseTime + log.StartHour * OneEorzeanHourSeconds
+            const startTime = baseTime + log.StartHour * OneEorzeanHourSeconds
             let endTime = baseTime + log.EndHour * OneEorzeanHourSeconds
             if (crossesMidnight)
             {
-                // In the case of like 18-05, startTime or endTime have to be modified
-                startTime -= isAM ? OneEorzeanDaySeconds : 0
-                endTime += !isAM ? OneEorzeanDaySeconds : 0
+                // In the case of like 18-05, endTime have to be added Eorzean 24 hours
+                endTime += OneEorzeanDaySeconds
             }
 
             return {
@@ -120,6 +131,8 @@ function GetAchievableTimesByLog(log: SightseeingLog, startTime: EorzeanTime, da
                 end: endTime
             }
         })
+        // filters passed time box
+        .filter(f => f.end > startTime.source)
 }
 
 function GetLogicalAnd(arg1: AchievableTime[], arg2: AchievableTime[]): AchievableTime[] {

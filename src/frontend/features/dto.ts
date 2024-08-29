@@ -6,6 +6,7 @@ export interface SightseeingLog {
     CoordinateY: number;
     StartHour: number;
     EndHour: number;
+    EmoteId: number;
     EmoteName: string;
     Weather1Key: string;
     Weather1Name: string;

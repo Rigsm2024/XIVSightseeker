@@ -9,6 +9,7 @@ type SightseeingLog struct {
 	CoordinateY    float64
 	StartHour      uint
 	EndHour        uint
+	EmoteId        uint
 	EmoteName      string
 	Weather1Key    string
 	Weather1Name   string

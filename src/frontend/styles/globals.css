@@ -31,3 +31,49 @@ body {
     text-wrap: balance;
   }
 }
+
+@layer components {
+  .metalic-border {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: calc(100% - 0.25rem);
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(174deg, rgb(210, 197, 179), rgb(148, 128, 92), rgb(148, 128, 92), rgb(148, 128, 92));
+    box-shadow: inset 0 0 3px black;
+    z-index: -1;
+  }
+
+  .sightseeing-log-container {
+    background: linear-gradient(180deg, rgb(140, 129, 128), rgb(51, 48, 49), rgb(51, 48, 49), rgb(51, 48, 49), rgb(51, 48, 49));
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: 0 0 3px black;
+    border: 1px solid black;
+
+  }
+
+  .card-divider-h {
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(180deg, rgb(51, 48, 49), black, rgb(51, 48, 49));
+    border: 0.5px solid;
+    border-top-color: rgb(68, 64, 85);
+    border-right-color: transparent;
+    border-bottom-color: rgb(79, 77, 78);
+    border-left-color: transparent;
+  }
+
+  .card-divider-v {
+    width: 3px;
+    background: linear-gradient(90deg, rgb(51, 48, 49), black, rgb(51, 48, 49));
+    border: 0.5px solid;
+    border-top-color: transparent;
+    border-right-color: rgb(109, 108, 108);
+    border-bottom-color: transparent;
+    border-left-color: rgb(51, 48, 49);
+  }
+}
