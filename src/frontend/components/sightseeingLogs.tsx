@@ -76,6 +76,5 @@ export default function SightseeingLogs({ logs }: SightseeingArray) {
                 ))}
             </div>
         </div>
-
     )
 }
