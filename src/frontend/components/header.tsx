@@ -15,13 +15,12 @@ export default function SightHeader() {
                 />
                 <h1 className='m-1'>XIVSightseeker</h1>
             </div>
-            <a href='https://github.com/Rigsm2024/XIVSightseeker' title='source code'>
+            <a href='https://github.com/Rigsm2024/XIVSightseeker' title='source code' className='relative w-8 h-8 p-2 mr-1'>
                 <Image 
                     src={githubIcon} 
-                    width={30} 
-                    height={30} 
+                    fill
                     alt='githubIcon' 
-                    className='invert m-2' 
+                    className='invert !h-auto' 
                 />
             </a>
         </div>

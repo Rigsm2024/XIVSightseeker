@@ -10,11 +10,12 @@ interface SightseeingArray {
 
 function SightseeingLogItem(log: GuidedSightseeingLog) {
 
-    //const mapImage = <Image src={`/map/${log.ItemNo}.jpeg`} width={240} alt='map' />
-    const mapImage = <Image src={`/map/2.jpeg`} width={320} height={180} alt='map' className='left-0 right-0 m-auto' />
+    // TODO: add all maps
+    const mapUrl = log.ItemNo < 23 ? `/map/${log.ItemNo.toString().padStart(3, '0')}.jpeg` : '/map/placeholder.jpeg'
+    const mapImage = <Image src={mapUrl} width={320} height={180} alt='map' priority={false} className='left-0 right-0 m-auto' />
     const weather1Icon = <Image src={`/img/${log.Weather1Key}.png`} width={20} height={20} alt={log.Weather1Key} titile={log.Weather1Name} />
     const weather2Icon = log.Weather2Key != null ? <Image src={`/img/${log.Weather2Key}.png`} width={20} height={20} alt={log.Weather2Key} titile={log.Weather2Name} /> : null
-    const emoteIcon = <Image src={`/img/emote${log.EmoteId}.jpg`} width={40} height={40} alt={log.EmoteName} />
+    const emoteIcon = <Image src={`/img/emote${log.EmoteId}.png`} width={40} height={40} alt={log.EmoteName} />
 
     return (
         <div className='basis-full md:basis-1/2 relative box-border p-1 pr-2 my-1'>
@@ -62,17 +63,17 @@ export default function SightseeingLogs({ logs }: SightseeingArray) {
         <div>
             <div className='w-full flex flex-row flex-wrap border-b p-2 pr-1 my-2'>
                 {achievables.map(log => (
-                    <SightseeingLogItem {...log}/>
+                    <SightseeingLogItem key={log.ItemNo} {...log}/>
                 ))}
             </div>
             <div className='w-full flex flex-row flex-wrap border-b p-2 pr-1 my-2'>
                 {almostAchievables.map(log => (
-                    <SightseeingLogItem {...log}/>
+                    <SightseeingLogItem key={log.ItemNo} {...log}/>
                 ))}
             </div>
             <div className='w-full flex flex-row flex-wrap border-b p-2 pr-1 my-2 opacity-70'>
                 {notAchievables.map(log => (
-                    <SightseeingLogItem {...log}/>
+                    <SightseeingLogItem key={log.ItemNo} {...log}/>
                 ))}
             </div>
         </div>
