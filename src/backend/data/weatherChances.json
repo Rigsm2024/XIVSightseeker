@@ -1,0 +1,212 @@
+{
+    "limsaLominsa": [
+      { "weather_key": "clouds", "chance": 20 },
+      { "weather_key": "clearSkies", "chance": 30 },
+      { "weather_key": "fairSkies", "chance": 30 },
+      { "weather_key": "fog", "chance": 10 },
+      { "weather_key": "rain", "chance": 10 }
+    ],
+  
+    "middleLaNoscea": [
+      { "weather_key": "clouds", "chance": 20 },
+      { "weather_key": "clearSkies", "chance": 30 },
+      { "weather_key": "fairSkies", "chance": 20 },
+      { "weather_key": "dustStorms", "chance": 10 },
+      { "weather_key": "fog", "chance": 10 },
+      { "weather_key": "rain", "chance": 10 }
+    ],
+  
+    "lowerLaNoscea": [
+      { "weather_key": "clouds", "chance": 20 },
+      { "weather_key": "clearSkies", "chance": 30 },
+      { "weather_key": "fairSkies", "chance": 20 },
+      { "weather_key": "dustStorms", "chance": 10 },
+      { "weather_key": "fog", "chance": 10 },
+      { "weather_key": "rain", "chance": 10 }
+    ],
+  
+    "easternLaNoscea": [
+      { "weather_key": "fog", "chance": 5 },
+      { "weather_key": "clearSkies", "chance": 45 },
+      { "weather_key": "fairSkies", "chance": 30 },
+      { "weather_key": "clouds", "chance": 10 },
+      { "weather_key": "rain", "chance": 5 },
+      { "weather_key": "wind", "chance": 5 }
+    ],
+  
+    "westernLaNoscea": [
+      { "weather_key": "fog", "chance": 10 },
+      { "weather_key": "clearSkies", "chance": 30 },
+      { "weather_key": "fairSkies", "chance": 20 },
+      { "weather_key": "clouds", "chance": 20 },
+      { "weather_key": "dustStorms", "chance": 10 },
+      { "weather_key": "gales", "chance": 10 }
+    ],
+  
+    "upperLaNoscea": [
+      { "weather_key": "clearSkies", "chance": 30 },
+      { "weather_key": "fairSkies", "chance": 20 },
+      { "weather_key": "clouds", "chance": 20 },
+      { "weather_key": "fog", "chance": 10 },
+      { "weather_key": "thunder", "chance": 10 },
+      { "weather_key": "thunderstorms", "chance": 10 }
+    ],
+  
+    "outerLaNoscea": [
+      { "weather_key": "clearSkies", "chance": 30 },
+      { "weather_key": "fairSkies", "chance": 20 },
+      { "weather_key": "clouds", "chance": 20 },
+      { "weather_key": "fog", "chance": 15 },
+      { "weather_key": "rain", "chance": 15 }
+    ],
+  
+    "wolvesDenPier": [
+      { "weather_key": "clouds", "chance": 20 },
+      { "weather_key": "clearSkies", "chance": 30 },
+      { "weather_key": "fairSkies", "chance": 30 },
+      { "weather_key": "fog", "chance": 10 },
+      { "weather_key": "thunderstorms", "chance": 10 }
+    ],
+  
+    "mist": [
+      { "weather_key": "clouds", "chance": 20 },
+      { "weather_key": "clearSkies", "chance": 30 },
+      { "weather_key": "fairSkies", "chance": 30 },
+      { "weather_key": "fog", "chance": 10 },
+      { "weather_key": "rain", "chance": 10 }
+    ],
+  
+    "gridania": [
+      { "weather_key": "rain", "chance": 20 },
+      { "weather_key": "fog", "chance": 10 },
+      { "weather_key": "clouds", "chance": 10 },
+      { "weather_key": "fairSkies", "chance": 15 },
+      { "weather_key": "clearSkies", "chance": 30 },
+      { "weather_key": "fairSkies", "chance": 15 }
+    ],
+  
+    "centralShroud": [
+      { "weather_key": "thunder", "chance": 5 },
+      { "weather_key": "rain", "chance": 15 },
+      { "weather_key": "fog", "chance": 10 },
+      { "weather_key": "clouds", "chance": 10 },
+      { "weather_key": "fairSkies", "chance": 15 },
+      { "weather_key": "clearSkies", "chance": 30 },
+      { "weather_key": "fairSkies", "chance": 15 }
+    ],
+  
+    "eastShroud": [
+      { "weather_key": "thunder", "chance": 5 },
+      { "weather_key": "rain", "chance": 15 },
+      { "weather_key": "fog", "chance": 10 },
+      { "weather_key": "clouds", "chance": 10 },
+      { "weather_key": "fairSkies", "chance": 15 },
+      { "weather_key": "clearSkies", "chance": 30 },
+      { "weather_key": "fairSkies", "chance": 15 }
+    ],
+  
+    "southShroud": [
+      { "weather_key": "fog", "chance": 5 },
+      { "weather_key": "thunderstorms", "chance": 5 },
+      { "weather_key": "thunder", "chance": 15 },
+      { "weather_key": "fog", "chance": 5 },
+      { "weather_key": "clouds", "chance": 10 },
+      { "weather_key": "fairSkies", "chance": 30 },
+      { "weather_key": "clearSkies", "chance": 30 }
+    ],
+  
+    "northShroud": [
+      { "weather_key": "fog", "chance": 5 },
+      { "weather_key": "thunderstorms", "chance": 5 },
+      { "weather_key": "rain", "chance": 15 },
+      { "weather_key": "fog", "chance": 5 },
+      { "weather_key": "clouds", "chance": 10 },
+      { "weather_key": "fairSkies", "chance": 30 },
+      { "weather_key": "clearSkies", "chance": 30 }
+    ],
+  
+    "theLavenderBeds": [
+      { "weather_key": "clouds", "chance": 5 },
+      { "weather_key": "rain", "chance": 15 },
+      { "weather_key": "fog", "chance": 10 },
+      { "weather_key": "clouds", "chance": 10 },
+      { "weather_key": "fairSkies", "chance": 15 },
+      { "weather_key": "clearSkies", "chance": 30 },
+      { "weather_key": "fairSkies", "chance": 15 }
+    ],
+  
+    "uldah": [
+      { "weather_key": "clearSkies", "chance": 40 },
+      { "weather_key": "fairSkies", "chance": 20 },
+      { "weather_key": "clouds", "chance": 25 },
+      { "weather_key": "fog", "chance": 10 },
+      { "weather_key": "rain", "chance": 5 }
+    ],
+  
+    "westernThanalan": [
+      { "weather_key": "clearSkies", "chance": 40 },
+      { "weather_key": "fairSkies", "chance": 20 },
+      { "weather_key": "clouds", "chance": 25 },
+      { "weather_key": "fog", "chance": 10 },
+      { "weather_key": "rain", "chance": 5 }
+    ],
+  
+    "centralThanalan": [
+      { "weather_key": "gloom", "chance": 15 },
+      { "weather_key": "clearSkies", "chance": 40 },
+      { "weather_key": "fairSkies", "chance": 20 },
+      { "weather_key": "clouds", "chance": 10 },
+      { "weather_key": "fog", "chance": 10 },
+      { "weather_key": "rain", "chance": 5 }
+    ],
+  
+    "easternThanalan": [
+      { "weather_key": "clearSkies", "chance": 40 },
+      { "weather_key": "fairSkies", "chance": 20 },
+      { "weather_key": "clouds", "chance": 10 },
+      { "weather_key": "fog", "chance": 10 },
+      { "weather_key": "rain", "chance": 5 },
+      { "weather_key": "gloom", "chance": 15 }
+    ],
+  
+    "southernThanalan": [
+      { "weather_key": "clearSkies", "chance": 20 },
+      { "weather_key": "clearSkies", "chance": 40 },
+      { "weather_key": "fairSkies", "chance": 20 },
+      { "weather_key": "clouds", "chance": 10 },
+      { "weather_key": "fog", "chance": 10 }
+    ],
+  
+    "northernThanalan": [
+      { "weather_key": "clearSkies", "chance": 5 },
+      { "weather_key": "fairSkies", "chance": 15 },
+      { "weather_key": "clouds", "chance": 30 },
+      { "weather_key": "fog", "chance": 50 }
+    ],
+  
+    "theGoblet": [
+      { "weather_key": "clearSkies", "chance": 40 },
+      { "weather_key": "fairSkies", "chance": 20 },
+      { "weather_key": "clouds", "chance": 25 },
+      { "weather_key": "fog", "chance": 10 },
+      { "weather_key": "rain", "chance": 5 }
+    ],
+  
+    "morDhona": [
+      { "weather_key": "clouds", "chance": 15 },
+      { "weather_key": "fog", "chance": 15 },
+      { "weather_key": "gloom", "chance": 30 },
+      { "weather_key": "clearSkies", "chance": 15 },
+      { "weather_key": "fairSkies", "chance": 25 }
+    ],
+  
+    "coerthasCentralHighlands": [
+      { "weather_key": "thunder", "chance": 20 },
+      { "weather_key": "blizzard", "chance": 40 },
+      { "weather_key": "fairSkies", "chance": 10 },
+      { "weather_key": "clearSkies", "chance": 5 },
+      { "weather_key": "clouds", "chance": 15 },
+      { "weather_key": "fog", "chance": 10 }
+    ]
+  }
+  

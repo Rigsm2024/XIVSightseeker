@@ -11,7 +11,7 @@ import (
 func main() {
     // ============
     // Setup Repository
-    repos := repository.NewDBRepository()
+    repos := repository.NewJsonRepository()
     forecaster := weather.NewWeatherForecaster(repos)
 
     // ============
