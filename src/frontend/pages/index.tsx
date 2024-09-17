@@ -15,7 +15,7 @@ export async function getServerSideProps() {
 }
 
 async function fetchDatas(isServerSide: boolean) {
-    const url = isServerSide ? process.env.SSR_API_URL : process.env.SPA_API_URL
+    const url = isServerSide ? process.env.SSR_API_URL : process.env.NEXT_PUBLIC_SPA_API_URL
 
     // Get sightseeing logs data from server
     const resLogs = await fetch(url + '/SightseeingLogs', {
