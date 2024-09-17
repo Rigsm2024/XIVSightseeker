@@ -1,7 +1,7 @@
 
 
 export async function getServerSideProps() {
-  const res = await fetch('http://backend:8080/ping', {
+  const res = await fetch(process.env.SSR_API_URL + '/ping', {
     method: 'GET',
     mode: 'cors',
   })
