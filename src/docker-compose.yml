@@ -14,7 +14,9 @@ services:
 
   backend:
     build:
-     context: ./backend
+      context: ./backend
+    environment:
+        - FRONT_URL=http://localhost:3000
     ports:
       - "8080:8080"
     volumes:

@@ -5,9 +5,7 @@ RUN mkdir /app
 WORKDIR /app
 ADD . /app
 
-# COPY go.mod ./
-# RUN go mod download
-# COPY . .
+ENV FRONT_URL=https://xivsightseeker-prototype-1045314413273.asia-northeast1.run.app
 
 RUN go build -o /main .
 

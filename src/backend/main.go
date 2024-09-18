@@ -6,6 +6,8 @@ import (
     "github.com/gin-gonic/gin"
     "backend/repository"
     "backend/weather"
+    "fmt"
+    "os"
 )
 
 func main() {
@@ -19,10 +21,11 @@ func main() {
     r := gin.Default()
 
     // Setup CORS
+    fmt.Println("Allow origin: " + os.Getenv("FRONT_URL"))
     r.Use(cors.New(cors.Config{
-        AllowOrigins:     []string{"http://localhost:3000"},
+        AllowOrigins:     []string{os.Getenv("FRONT_URL")},
         AllowMethods:     []string{"GET", "POST", "HEAD"},  
-        AllowCredentials: true,                             
+        AllowCredentials: true,
     }))
 
     // ping
