@@ -76,6 +76,9 @@ export default function SightseeingLogs({ logs }: SightseeingArray) {
                     <SightseeingLogItem key={log.ItemNo} {...log}/>
                 ))}
             </div>
+            <div className='w-full flex items-center justify-center'>
+                <span className='text-xs mt-2 mb-4 opacity-50'>© SQUARE ENIX</span>
+            </div>
         </div>
     )
 }

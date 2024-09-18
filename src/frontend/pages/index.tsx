@@ -68,7 +68,7 @@ export default function index({ guidedLogs }: SightseekerProps) {
   SetRefreshEvent(sorted, updateSource)
 
   return (
-    <div className='container m-auto inset-x-0'>
+    <div className='container m-auto px-2 inset-x-0'>
       <SightHeader />
       <SightTab initialIndex={initialTab} updateFilters={updateFilters}/>
       <SightseeingLogs logs={sorted}/>
