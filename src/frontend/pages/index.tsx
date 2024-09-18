@@ -16,6 +16,7 @@ export async function getServerSideProps() {
 
 async function fetchDatas(isServerSide: boolean) {
     const url = isServerSide ? process.env.SSR_API_URL : process.env.NEXT_PUBLIC_SPA_API_URL
+    console.log("Try to fetch. url: " + url)
 
     // Get sightseeing logs data from server
     const resLogs = await fetch(url + '/SightseeingLogs', {
@@ -36,17 +37,21 @@ async function fetchDatas(isServerSide: boolean) {
 
 function SetRefreshEvent(logs: GuidedSightseeingLog[], updateSource: (source: GuidedSightseeingLog[]) => void) {
   useEffect(() => {
-    const interval = GetLatestRemainingSeconds(logs) * 1000
+    let interval = GetLatestRemainingSeconds(logs) * 1000
+    console.log("Set refreshing timer. interval: " + interval)
 
-    const timeoutId = setTimeout(() => {
+    const worker = new Worker(new URL('../public/timerWorker.js', import.meta.url));
+    worker.postMessage(interval)
+    worker.onmessage = _ => {
+      // Update sightseeing logs data when some item's phase is changed.
       fetchDatas(false)
         .then(newDatas => {
           updateSource(newDatas.props.guidedLogs)
         })
         .catch(err => console.log(err))
-    }, interval)
+    }
 
-    return () => clearTimeout(timeoutId);
+    return () => worker.terminate();
   }, [logs, updateSource])
 }
 

@@ -24,7 +24,7 @@ export interface GuidedSightseeingLog {
     Weather2Name?: string;
     Description: string;
     Phase: EAchievementPhase;
-    RemainingSeconds: number;
+    PhaseTransitionTime: number;
 }
 
 // Returns sightseeing logs with phase and remaining time
@@ -46,21 +46,15 @@ export function GetGuidedSightseeingLogs(logs: SightseeingLog[], reports: Weathe
         const isCurrentlyAchievable = isAchievable && achievables[0].start <= currentUnixSeconds
         
         let phase = EAchievementPhase.NotAchievableForAWhile
-        let remainingSeconds = 0
+        let phaseTransitionTime = 0
         if (isAchievable) {
             if (isCurrentlyAchievable) {
                 phase = EAchievementPhase.CurrentlyAchievable
-                remainingSeconds = achievables[0].end - currentUnixSeconds
+                phaseTransitionTime = achievables[0].end
             }
             else {
                 phase = EAchievementPhase.SoonAchievable
-                remainingSeconds = achievables[0].start - currentUnixSeconds
-            }
-
-            // Debugging
-            if (remainingSeconds < 0) {
-                console.warn('Something is wrong! remainingSeconds: ' + remainingSeconds)
-                console.warn(`[${log.ItemNo}]${log.AreaKey}, ${log.Weather1Key}${log.StartHour}-${log.EndHour}, phase: ${phase}`)
+                phaseTransitionTime = achievables[0].start
             }
         }
 
@@ -79,7 +73,7 @@ export function GetGuidedSightseeingLogs(logs: SightseeingLog[], reports: Weathe
             Weather2Name: log.Weather2Name,
             Description: log.Description,
             Phase: phase,
-            RemainingSeconds: remainingSeconds
+            PhaseTransitionTime: phaseTransitionTime
         }
     })
 

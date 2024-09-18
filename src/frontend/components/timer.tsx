@@ -6,33 +6,29 @@ interface CountdownTimerProps {
 }
 
 const CountdownTimer: React.FC<CountdownTimerProps> = ({ initialTime, phase }) => {
-    const [timeLeft, setTimeLeft] = useState<number | null>(null);
+    const [currentTime, setTimeLeft] = useState<number | null>(null);
 
     useEffect(() => {
-        setTimeLeft(initialTime);
-
-        const interval = setInterval(() => {
-            setTimeLeft(prevTime => {
-                if (prevTime && prevTime > 0) {
-                    return prevTime - 1;
-                } 
-                else {
-                    clearInterval(interval);
-                    return 0;
-                }
-            });
+        const currentUnixSeconds = Math.floor(Date.now() / 1000);
+        const intervalTag = setInterval(() => {
+            setTimeLeft(currentUnixSeconds);
         }, 1000);
 
-        return () => clearInterval(interval);
-    }, [initialTime]);
+        return () => clearInterval(intervalTag);
+    }, [currentTime]);
 
-    const formatTime = (seconds: number) => {
-        const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = seconds % 60;
-        return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+    const formatTime = (currentTimeArg: number) => {
+        const remainingSeconds = initialTime - currentTimeArg
+        if (remainingSeconds <= 0) {
+            return '00:00'
+        }
+
+        const minutes = Math.floor(remainingSeconds / 60);
+        const seconds = remainingSeconds % 60;
+        return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     };
 
-    return <div className='w-14'>{(timeLeft != null) ? formatTime(timeLeft) : 'Loading...'}</div>
+    return <div className='w-14'>{(currentTime != null) ? formatTime(currentTime) : 'Loading...'}</div>
 };
 
 export default function TimerText({initialTime, phase}: CountdownTimerProps) {

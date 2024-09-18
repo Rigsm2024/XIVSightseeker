@@ -30,7 +30,7 @@ function SightseeingLogItem(log: GuidedSightseeingLog) {
                     <div className='flex flex-col flex-1'>
                         <div className='flex flex-row items-center'>
                             <Image src={alarmIcon} width={24} height={24} alt='alarm icon' className='invert m-2 ml-1' />
-                            <TimerText initialTime={log.RemainingSeconds} phase={log.Phase} />
+                            <TimerText initialTime={log.PhaseTransitionTime} phase={log.Phase} />
                         </div>
                         <div className='relative'>
                             <div className='w-full rounded overflow-hidden'>

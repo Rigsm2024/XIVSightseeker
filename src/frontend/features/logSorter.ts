@@ -17,8 +17,8 @@ export function GetSortedSightseengLogs(source: GuidedSightseeingLog[], props: L
                 return a.Phase - b.Phase
             }
             
-            if (a.RemainingSeconds != b.RemainingSeconds) {
-                return a.RemainingSeconds - b.RemainingSeconds
+            if (a.PhaseTransitionTime != b.PhaseTransitionTime) {
+                return a.PhaseTransitionTime - b.PhaseTransitionTime
             }
 
             return a.ItemNo - b.ItemNo
@@ -30,9 +30,10 @@ export function GetLatestRemainingSeconds(source: GuidedSightseeingLog[]) {
         return -1
     }
     
+    const currentUnixSeconds = Math.floor(Date.now() / 1000);
     const sorted = source
         .filter(f => f.Phase != 3)
-        .sort((a, b) => a.RemainingSeconds - b.RemainingSeconds)
+        .sort((a, b) => a.PhaseTransitionTime - b.PhaseTransitionTime)
     
-    return sorted[0].RemainingSeconds
+    return sorted[0].PhaseTransitionTime - currentUnixSeconds
 }
