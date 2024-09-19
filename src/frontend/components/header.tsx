@@ -4,14 +4,14 @@ import githubIcon from '../public/icon/github-mark.svg'
 
 export default function SightHeader() {
     return (
-        <div className='container flex flex-row items-center place-content-between border-solid border-b'>
+        <div className='container flex flex-row items-center place-content-between border-solid border-b prefer-border-color'>
             <div className='flex flex-row items-center'>
                 <Image 
                     src={sightseeingIcon} 
                     width={30} 
                     height={30} 
                     alt='sightseeingIcon' 
-                    className='invert m-2' 
+                    className='prefer-icon-invert m-2' 
                 />
                 <h1 className='m-1'>XIVSightseeker</h1>
             </div>
@@ -20,7 +20,7 @@ export default function SightHeader() {
                     src={githubIcon} 
                     fill
                     alt='githubIcon' 
-                    className='invert !h-auto' 
+                    className='prefer-icon-invert !h-auto' 
                 />
             </a>
         </div>

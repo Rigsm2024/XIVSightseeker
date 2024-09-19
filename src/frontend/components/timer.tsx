@@ -52,15 +52,15 @@ export default function TimerText({initialTime, phase}: CountdownTimerProps) {
             }).format(achievableTime);
 
             return (
-                <div className='flex flex-row items-center'>
+                <div className='text-white flex flex-row items-center'>
                     <div>あと</div>
                     <CountdownTimer initialTime={initialTime} phase={phase} />
-                    <div className='flex-1 ' suppressHydrationWarning>(LT{achievableTimeText}から)</div>
+                    <div className='flex-1' suppressHydrationWarning>(LT{achievableTimeText}から)</div>
                 </div>
             )
 
         case 3:
         default:
-            return <div>...</div>
+            return <div className='text-white'>しばらく達成不可</div>
     }
 }
