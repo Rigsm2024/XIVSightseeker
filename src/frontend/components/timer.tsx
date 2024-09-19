@@ -28,7 +28,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ initialTime, phase }) =
         return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     };
 
-    return <div className='w-14'>{(currentTime != null) ? formatTime(currentTime) : 'Loading...'}</div>
+    return <div className='w-14'>{(currentTime != null) ? formatTime(currentTime) : '--:--'}</div>
 };
 
 export default function TimerText({initialTime, phase}: CountdownTimerProps) {

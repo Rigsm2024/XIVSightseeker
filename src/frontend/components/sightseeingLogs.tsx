@@ -1,5 +1,6 @@
 import Image from "next/image"
 import alarmIcon from '../public/icon/clock-hour-4.svg'
+import TextDropdown from "./textDropdown"
 import TimerText from "./timer"
 import { GuidedSightseeingLog } from "../features/sightseeingGuide"
 import { playfair } from "../pages/fonts"
@@ -23,7 +24,7 @@ function SightseeingLogItem({ log, phaseClass }: SightseeingItemProps) {
     const emoteIcon = <Image src={`/img/emote${log.EmoteId}.png`} width={40} height={40} alt={log.EmoteName} />
 
     return (
-        <div className={`${phaseClass} basis-full max-w-sm md:basis-1/2 relative box-border p-1 pr-2 my-1`}>
+        <div className={`${phaseClass} basis-full max-w-sm md:basis-1/2 self-start relative box-border p-1 pr-2 my-1`}>
             <div className='sightseeing-log-container flex flex-col flex-wrap'>
                 <div className='flex flex-row items-center gap-2 m-0.5 text-gray-300'>
                     <div className={`text-xl mb-0.5 ml-1 ${playfair.className}`}>{log.ItemNo.toString().padStart(3, '0')}</div>
@@ -54,6 +55,7 @@ function SightseeingLogItem({ log, phaseClass }: SightseeingItemProps) {
                         <div className='text-xs m-1 w-12 text-center text-white'>{log.EmoteName}</div>
                     </div>
                 </div>
+                <TextDropdown {...log}/>
             </div>
             <div className='metalic-border'></div>
         </div>
