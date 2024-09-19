@@ -8,7 +8,12 @@ interface SightseeingArray {
     logs: GuidedSightseeingLog[]
 }
 
-function SightseeingLogItem(log: GuidedSightseeingLog) {
+interface SightseeingItemProps {
+    log: GuidedSightseeingLog
+    phaseClass: string
+}
+
+function SightseeingLogItem({ log, phaseClass }: SightseeingItemProps) {
 
     // TODO: add all maps
     const mapUrl = log.ItemNo < 23 ? `/map/${log.ItemNo.toString().padStart(3, '0')}.jpeg` : '/map/placeholder.jpeg'
@@ -18,7 +23,7 @@ function SightseeingLogItem(log: GuidedSightseeingLog) {
     const emoteIcon = <Image src={`/img/emote${log.EmoteId}.png`} width={40} height={40} alt={log.EmoteName} />
 
     return (
-        <div className='basis-full max-w-sm md:basis-1/2 relative box-border p-1 pr-2 my-1'>
+        <div className={`${phaseClass} basis-full max-w-sm md:basis-1/2 relative box-border p-1 pr-2 my-1`}>
             <div className='sightseeing-log-container flex flex-col flex-wrap'>
                 <div className='flex flex-row items-center gap-2 m-0.5 text-gray-300'>
                     <div className={`text-xl mb-0.5 ml-1 ${playfair.className}`}>{log.ItemNo.toString().padStart(3, '0')}</div>
@@ -56,26 +61,26 @@ function SightseeingLogItem(log: GuidedSightseeingLog) {
 }
 
 export default function SightseeingLogs({ logs }: SightseeingArray) {
-    const achievables = logs.filter(f => f.Phase == 1)
-    const almostAchievables = logs.filter(f => f.Phase == 2)
+    const currentlyAchievables = logs.filter(f => f.Phase == 1)
+    const soonAchievables = logs.filter(f => f.Phase == 2)
     const notAchievables = logs.filter(f => f.Phase == 3)
 
-    const baseClasses = 'w-full flex flex-row flex-wrap justify-center md:justify-between md:px-10 border-b prefer-border-color p-2 mr-1 my-2'
+    const baseClasses = 'w-full flex flex-row flex-wrap justify-center md:justify-between xl:justify-start lg:px-14 border-b prefer-border-color p-2 mr-1 my-2'
     return (
         <div>
             <div className={`${baseClasses}`}>
-                {achievables.map(log => (
-                    <SightseeingLogItem key={log.ItemNo} {...log}/>
+                {currentlyAchievables.map(log => (
+                    <SightseeingLogItem key={log.ItemNo} log={log} phaseClass='currently-achievable'/>
                 ))}
             </div>
             <div className={`${baseClasses}`}>
-                {almostAchievables.map(log => (
-                    <SightseeingLogItem key={log.ItemNo} {...log}/>
+                {soonAchievables.map(log => (
+                    <SightseeingLogItem key={log.ItemNo} log={log} phaseClass='soon-achievable'/>
                 ))}
             </div>
-            <div className={`${baseClasses} opacity-70`}>
+            <div className={`${baseClasses}`}>
                 {notAchievables.map(log => (
-                    <SightseeingLogItem key={log.ItemNo} {...log}/>
+                    <SightseeingLogItem key={log.ItemNo} log={log} phaseClass='not-achievables'/>
                 ))}
             </div>
             <div className='w-full flex items-center justify-center'>
