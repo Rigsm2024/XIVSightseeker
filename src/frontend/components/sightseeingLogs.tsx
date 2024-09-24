@@ -16,8 +16,7 @@ interface SightseeingItemProps {
 
 function SightseeingLogItem({ log, phaseClass }: SightseeingItemProps) {
 
-    // TODO: add all maps
-    const mapUrl = log.ItemNo < 23 ? `/map/${log.ItemNo.toString().padStart(3, '0')}.jpeg` : '/map/placeholder.jpeg'
+    const mapUrl = `/map/${log.ItemNo.toString().padStart(3, '0')}.jpeg`
     const mapImage = <Image src={mapUrl} width={320} height={180} alt='map' priority={false} className='left-0 right-0 m-auto' />
     const weather1Icon = <Image src={`/img/${log.Weather1Key}.png`} width={20} height={20} alt={log.Weather1Key} titile={log.Weather1Name} />
     const weather2Icon = log.Weather2Key != null ? <Image src={`/img/${log.Weather2Key}.png`} width={20} height={20} alt={log.Weather2Key} titile={log.Weather2Name} /> : null
