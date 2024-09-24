@@ -73,7 +73,7 @@
         "in_game_start_hour": 5,
         "in_game_end_hour": 8,
         "emote_id": 1,
-        "weather1_key": "thunder",
+        "weather1_key": "fog",
         "weather2_key": null
     },
     {
@@ -91,7 +91,7 @@
         "item_no": 9,
         "area_key": "gridania",
         "coordinate_x": 12,
-        "coordinate_y": 7,
+        "coordinate_y": 8,
         "in_game_start_hour": 12,
         "in_game_end_hour": 17,
         "emote_id": 1,
@@ -103,7 +103,7 @@
         "area_key": "gridania",
         "coordinate_x": 10,
         "coordinate_y": 6,
-        "in_game_start_hour": 22,
+        "in_game_start_hour": 18,
         "in_game_end_hour": 5,
         "emote_id": 1,
         "weather1_key": "clearSkies",
@@ -159,7 +159,7 @@
         "coordinate_x": 11,
         "coordinate_y": 11,
         "in_game_start_hour": 12,
-        "in_game_end_hour": 16,
+        "in_game_end_hour": 17,
         "emote_id": 1,
         "weather1_key": "clouds",
         "weather2_key": null
@@ -183,23 +183,23 @@
         "in_game_start_hour": 8,
         "in_game_end_hour": 12,
         "emote_id": 1,
-        "weather1_key": "thunder",
+        "weather1_key": "fog",
         "weather2_key": null
     },
     {
         "item_no": 18,
-        "area_key": "southernThanalan",
+        "area_key": "easternThanalan",
         "coordinate_x": 19,
         "coordinate_y": 24,
         "in_game_start_hour": 17,
         "in_game_end_hour": 18,
         "emote_id": 5,
-        "weather1_key": "thunderstorms",
-        "weather2_key": "gales"
+        "weather1_key": "rain",
+        "weather2_key": "showers"
     },
     {
         "item_no": 19,
-        "area_key": "southernThanalan",
+        "area_key": "easternThanalan",
         "coordinate_x": 14,
         "coordinate_y": 18,
         "in_game_start_hour": 8,
@@ -210,7 +210,7 @@
     },
     {
         "item_no": 20,
-        "area_key": "southernThanalan",
+        "area_key": "easternThanalan",
         "coordinate_x": 21,
         "coordinate_y": 20,
         "in_game_start_hour": 5,
@@ -249,7 +249,7 @@
         "in_game_start_hour": 12,
         "in_game_end_hour": 17,
         "emote_id": 1,
-        "weather1_key": "clouds",
+        "weather1_key": "rain",
         "weather2_key": null
     },
     {
@@ -271,8 +271,8 @@
         "in_game_start_hour": 18,
         "in_game_end_hour": 5,
         "emote_id": 1,
-        "weather1_key": "thunderstorms",
-        "weather2_key": "fog"
+        "weather1_key": "rain",
+        "weather2_key": "showers"
     },
     {
         "item_no": 26,
@@ -293,7 +293,7 @@
         "in_game_start_hour": 18,
         "in_game_end_hour": 5,
         "emote_id": 1,
-        "weather1_key": "dustStorms",
+        "weather1_key": "gales",
         "weather2_key": null
     },
     {
@@ -320,7 +320,7 @@
     },
     {
         "item_no": 30,
-        "area_key": "theBlackShroud",
+        "area_key": "upperLaNoscea",
         "coordinate_x": 30,
         "coordinate_y": 22,
         "in_game_start_hour": 17,
@@ -331,7 +331,7 @@
     },
     {
         "item_no": 31,
-        "area_key": "theBlackShroud",
+        "area_key": "upperLaNoscea",
         "coordinate_x": 13,
         "coordinate_y": 21,
         "in_game_start_hour": 12,
@@ -342,18 +342,18 @@
     },
     {
         "item_no": 32,
-        "area_key": "theBlackShroud",
+        "area_key": "upperLaNoscea",
         "coordinate_x": 29,
         "coordinate_y": 25,
         "in_game_start_hour": 18,
         "in_game_end_hour": 5,
         "emote_id": 1,
-        "weather1_key": "thunderstorms",
-        "weather2_key": "dustStorms"
+        "weather1_key": "thunder",
+        "weather2_key": "thunderstorms"
     },
     {
         "item_no": 33,
-        "area_key": "centralThanalan",
+        "area_key": "upperLaNoscea",
         "coordinate_x": 12,
         "coordinate_y": 15,
         "in_game_start_hour": 18,
@@ -364,7 +364,7 @@
     },
     {
         "item_no": 34,
-        "area_key": "centralThanalan",
+        "area_key": "outerLaNoscea",
         "coordinate_x": 17,
         "coordinate_y": 16,
         "in_game_start_hour": 5,
@@ -375,7 +375,7 @@
     },
     {
         "item_no": 35,
-        "area_key": "centralThanalan",
+        "area_key": "outerLaNoscea",
         "coordinate_x": 23,
         "coordinate_y": 11,
         "in_game_start_hour": 12,
@@ -386,13 +386,13 @@
     },
     {
         "item_no": 36,
-        "area_key": "centralThanalan",
+        "area_key": "outerLaNoscea",
         "coordinate_x": 15,
         "coordinate_y": 10,
         "in_game_start_hour": 18,
         "in_game_end_hour": 5,
         "emote_id": 3,
-        "weather1_key": "clouds",
+        "weather1_key": "rain",
         "weather2_key": null
     },
     {
@@ -414,7 +414,7 @@
         "in_game_start_hour": 5,
         "in_game_end_hour": 8,
         "emote_id": 1,
-        "weather1_key": "thunder",
+        "weather1_key": "rain",
         "weather2_key": null
     },
     {
@@ -425,7 +425,7 @@
         "in_game_start_hour": 5,
         "in_game_end_hour": 8,
         "emote_id": 1,
-        "weather1_key": "thunder",
+        "weather1_key": "rain",
         "weather2_key": null
     },
     {
@@ -469,23 +469,23 @@
         "in_game_start_hour": 18,
         "in_game_end_hour": 5,
         "emote_id": 1,
-        "weather1_key": "thunderstorms",
+        "weather1_key": "thunder",
         "weather2_key": null
     },
     {
         "item_no": 44,
-        "area_key": "southernThanalan",
+        "area_key": "southShroud",
         "coordinate_x": 17,
-        "coordinate_y": 27,
+        "coordinate_y": 20,
         "in_game_start_hour": 8,
         "in_game_end_hour": 12,
         "emote_id": 1,
-        "weather1_key": "dustStorms",
+        "weather1_key": "thunderstorms",
         "weather2_key": null
     },
     {
         "item_no": 45,
-        "area_key": "southernThanalan",
+        "area_key": "southShroud",
         "coordinate_x": 14,
         "coordinate_y": 33,
         "in_game_start_hour": 8,
@@ -496,18 +496,18 @@
     },
     {
         "item_no": 46,
-        "area_key": "southernThanalan",
+        "area_key": "southShroud",
         "coordinate_x": 33,
         "coordinate_y": 23,
         "in_game_start_hour": 12,
         "in_game_end_hour": 17,
         "emote_id": 1,
-        "weather1_key": "thunder",
+        "weather1_key": "fog",
         "weather2_key": null
     },
     {
         "item_no": 47,
-        "area_key": "southernThanalan",
+        "area_key": "southShroud",
         "coordinate_x": 25,
         "coordinate_y": 21,
         "in_game_start_hour": 5,
@@ -518,7 +518,7 @@
     },
     {
         "item_no": 48,
-        "area_key": "northernThanalan",
+        "area_key": "northShroud",
         "coordinate_x": 18,
         "coordinate_y": 19,
         "in_game_start_hour": 12,
@@ -529,7 +529,7 @@
     },
     {
         "item_no": 49,
-        "area_key": "northernThanalan",
+        "area_key": "northShroud",
         "coordinate_x": 15,
         "coordinate_y": 32,
         "in_game_start_hour": 18,
@@ -540,14 +540,14 @@
     },
     {
         "item_no": 50,
-        "area_key": "northernThanalan",
+        "area_key": "northShroud",
         "coordinate_x": 15,
         "coordinate_y": 27,
         "in_game_start_hour": 8,
         "in_game_end_hour": 12,
         "emote_id": 1,
-        "weather1_key": "thunderstorms",
-        "weather2_key": "fog"
+        "weather1_key": "clouds",
+        "weather2_key": null
     },
     {
         "item_no": 51,
@@ -573,18 +573,18 @@
     },
     {
         "item_no": 53,
-        "area_key": "northernThanalan",
+        "area_key": "centralThanalan",
         "coordinate_x": 21,
         "coordinate_y": 17,
         "in_game_start_hour": 18,
         "in_game_end_hour": 5,
         "emote_id": 1,
-        "weather1_key": "thunderstorms",
-        "weather2_key": "dustStorms"
+        "weather1_key": "dustStorms",
+        "weather2_key": null
     },
     {
         "item_no": 54,
-        "area_key": "northernThanalan",
+        "area_key": "centralThanalan",
         "coordinate_x": 18,
         "coordinate_y": 26,
         "in_game_start_hour": 12,
@@ -595,7 +595,7 @@
     },
     {
         "item_no": 55,
-        "area_key": "southernThanalan",
+        "area_key": "easternThanalan",
         "coordinate_x": 30,
         "coordinate_y": 26,
         "in_game_start_hour": 12,
@@ -606,7 +606,7 @@
     },
     {
         "item_no": 56,
-        "area_key": "southernThanalan",
+        "area_key": "easternThanalan",
         "coordinate_x": 10,
         "coordinate_y": 16,
         "in_game_start_hour": 8,
@@ -617,29 +617,29 @@
     },
     {
         "item_no": 57,
-        "area_key": "southernThanalan",
+        "area_key": "easternThanalan",
         "coordinate_x": 25,
         "coordinate_y": 14,
         "in_game_start_hour": 18,
         "in_game_end_hour": 5,
         "emote_id": 2,
-        "weather1_key": "thunderstorms",
-        "weather2_key": "fog"
+        "weather1_key": "rain",
+        "weather2_key": null
     },
     {
         "item_no": 58,
-        "area_key": "northernThanalan",
+        "area_key": "southernThanalan",
         "coordinate_x": 12,
         "coordinate_y": 22,
         "in_game_start_hour": 5,
         "in_game_end_hour": 8,
         "emote_id": 2,
-        "weather1_key": "clearSkies",
-        "weather2_key": "fog"
+        "weather1_key": "fog",
+        "weather2_key": null
     },
     {
         "item_no": 59,
-        "area_key": "northernThanalan",
+        "area_key": "southernThanalan",
         "coordinate_x": 19,
         "coordinate_y": 20,
         "in_game_start_hour": 5,
@@ -650,18 +650,18 @@
     },
     {
         "item_no": 60,
-        "area_key": "northernThanalan",
+        "area_key": "southernThanalan",
         "coordinate_x": 21,
         "coordinate_y": 38,
         "in_game_start_hour": 12,
         "in_game_end_hour": 17,
-        "emote_id": 3,
-        "weather1_key": "clearSkies",
+        "emote_id": 1,
+        "weather1_key": "heatWaves",
         "weather2_key": null
     },
     {
         "item_no": 61,
-        "area_key": "northernThanalan",
+        "area_key": "southernThanalan",
         "coordinate_x": 23,
         "coordinate_y": 11,
         "in_game_start_hour": 12,
@@ -672,18 +672,18 @@
     },
     {
         "item_no": 62,
-        "area_key": "northernThanalan",
+        "area_key": "southernThanalan",
         "coordinate_x": 14,
         "coordinate_y": 26,
         "in_game_start_hour": 5,
         "in_game_end_hour": 8,
-        "emote_id": 3,
-        "weather1_key": "clearSkies",
-        "weather2_key": "dustStorms"
+        "emote_id": 7,
+        "weather1_key": "heatWaves",
+        "weather2_key": null
     },
     {
         "item_no": 63,
-        "area_key": "easternThanalan",
+        "area_key": "northernThanalan",
         "coordinate_x": 22,
         "coordinate_y": 25,
         "in_game_start_hour": 5,
@@ -694,18 +694,18 @@
     },
     {
         "item_no": 64,
-        "area_key": "easternThanalan",
+        "area_key": "northernThanalan",
         "coordinate_x": 20,
         "coordinate_y": 29,
         "in_game_start_hour": 18,
         "in_game_end_hour": 5,
         "emote_id": 1,
-        "weather1_key": "thunder",
-        "weather2_key": null
+        "weather1_key": "clearSkies",
+        "weather2_key": "fairSkies"
     },
     {
         "item_no": 65,
-        "area_key": "easternThanalan",
+        "area_key": "northernThanalan",
         "coordinate_x": 20,
         "coordinate_y": 22,
         "in_game_start_hour": 12,
@@ -716,29 +716,29 @@
     },
     {
         "item_no": 66,
-        "area_key": "easternThanalan",
+        "area_key": "northernThanalan",
         "coordinate_x": 19,
         "coordinate_y": 17,
         "in_game_start_hour": 8,
         "in_game_end_hour": 12,
         "emote_id": 1,
-        "weather1_key": "clearSkies",
-        "weather2_key": "fairSkies"
+        "weather1_key": "clouds",
+        "weather2_key": null
     },
     {
         "item_no": 67,
-        "area_key": "easternThanalan",
+        "area_key": "northernThanalan",
         "coordinate_x": 26,
         "coordinate_y": 22,
         "in_game_start_hour": 18,
         "in_game_end_hour": 5,
         "emote_id": 1,
-        "weather1_key": "thunderstorms",
+        "weather1_key": "fog",
         "weather2_key": null
     },
     {
         "item_no": 68,
-        "area_key": "westernThanalan",
+        "area_key": "coerthasCentralHighlands",
         "coordinate_x": 25,
         "coordinate_y": 29,
         "in_game_start_hour": 17,
@@ -749,29 +749,29 @@
     },
     {
         "item_no": 69,
-        "area_key": "westernThanalan",
+        "area_key": "coerthasCentralHighlands",
         "coordinate_x": 25,
         "coordinate_y": 29,
         "in_game_start_hour": 18,
         "in_game_end_hour": 5,
         "emote_id": 1,
-        "weather1_key": "thunderstorms",
-        "weather2_key": "fog"
-    },
-    {
-        "item_no": 70,
-        "area_key": "centralThanalan",
-        "coordinate_x": 15,
-        "coordinate_y": 12,
-        "in_game_start_hour": 5,
-        "in_game_end_hour": 8,
-        "emote_id": 1,
-        "weather1_key": "clearSkies",
+        "weather1_key": "fog",
         "weather2_key": null
     },
     {
+        "item_no": 70,
+        "area_key": "coerthasCentralHighlands",
+        "coordinate_x": 11,
+        "coordinate_y": 15,
+        "in_game_start_hour": 8,
+        "in_game_end_hour": 12,
+        "emote_id": 1,
+        "weather1_key": "snow",
+        "weather2_key": "blizzard"
+    },
+    {
         "item_no": 71,
-        "area_key": "centralThanalan",
+        "area_key": "coerthasCentralHighlands",
         "coordinate_x": 12,
         "coordinate_y": 17,
         "in_game_start_hour": 5,
@@ -782,7 +782,7 @@
     },
     {
         "item_no": 72,
-        "area_key": "centralThanalan",
+        "area_key": "coerthasCentralHighlands",
         "coordinate_x": 7,
         "coordinate_y": 28,
         "in_game_start_hour": 17,
@@ -793,18 +793,18 @@
     },
     {
         "item_no": 73,
-        "area_key": "centralThanalan",
+        "area_key": "coerthasCentralHighlands",
         "coordinate_x": 7,
         "coordinate_y": 31,
         "in_game_start_hour": 18,
         "in_game_end_hour": 5,
         "emote_id": 1,
-        "weather1_key": "thunderstorms",
-        "weather2_key": "fog"
+        "weather1_key": "snow",
+        "weather2_key": "blizzard"
     },
     {
         "item_no": 74,
-        "area_key": "centralThanalan",
+        "area_key": "coerthasCentralHighlands",
         "coordinate_x": 2,
         "coordinate_y": 21,
         "in_game_start_hour": 8,
@@ -815,7 +815,7 @@
     },
     {
         "item_no": 75,
-        "area_key": "centralThanalan",
+        "area_key": "coerthasCentralHighlands",
         "coordinate_x": 26,
         "coordinate_y": 17,
         "in_game_start_hour": 12,
@@ -826,7 +826,7 @@
     },
     {
         "item_no": 76,
-        "area_key": "centralThanalan",
+        "area_key": "coerthasCentralHighlands",
         "coordinate_x": 28,
         "coordinate_y": 10,
         "in_game_start_hour": 5,
@@ -837,18 +837,18 @@
     },
     {
         "item_no": 77,
-        "area_key": "easternThanalan",
+        "area_key": "morDhona",
         "coordinate_x": 9,
         "coordinate_y": 13,
         "in_game_start_hour": 12,
         "in_game_end_hour": 17,
         "emote_id": 1,
-        "weather1_key": "thunderstorms",
+        "weather1_key": "gloom",
         "weather2_key": null
     },
     {
         "item_no": 78,
-        "area_key": "easternThanalan",
+        "area_key": "morDhona",
         "coordinate_x": 27,
         "coordinate_y": 8,
         "in_game_start_hour": 18,
@@ -859,7 +859,7 @@
     },
     {
         "item_no": 79,
-        "area_key": "easternThanalan",
+        "area_key": "morDhona",
         "coordinate_x": 18,
         "coordinate_y": 17,
         "in_game_start_hour": 12,
@@ -870,7 +870,7 @@
     },
     {
         "item_no": 80,
-        "area_key": "easternThanalan",
+        "area_key": "morDhona",
         "coordinate_x": 26,
         "coordinate_y": 11,
         "in_game_start_hour": 17,
