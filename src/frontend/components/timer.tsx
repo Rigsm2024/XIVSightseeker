@@ -45,17 +45,17 @@ export default function TimerText({initialTime, phase}: CountdownTimerProps) {
         // soon achievable
         case 2:
             const achievableTime = new Date(new Date().getTime() + initialTime * 1000);
-            const achievableTimeText = new Intl.DateTimeFormat(undefined, {
-              hour: '2-digit',
-              minute: '2-digit',
-              timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, // use the browser's timezone
-            }).format(achievableTime);
+            // const achievableTimeText = new Intl.DateTimeFormat(undefined, {
+            //   hour: '2-digit',
+            //   minute: '2-digit',
+            //   timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, // use the browser's timezone
+            // }).format(achievableTime);
 
             return (
                 <div className='text-gray-200 flex flex-row items-center'>
                     <div>あと</div>
                     <CountdownTimer initialTime={initialTime} phase={phase} />
-                    <div className='flex-1' suppressHydrationWarning>(LT{achievableTimeText}から)</div>
+                    {/* <div className='flex-1' suppressHydrationWarning>(LT{achievableTimeText}から)</div> */}
                 </div>
             )
 

@@ -254,7 +254,7 @@
     },
     {
         "item_no": 24,
-        "area_key": "westernThanalan",
+        "area_key": "easternLaNoscea",
         "coordinate_x": 32,
         "coordinate_y": 23,
         "in_game_start_hour": 8,
@@ -265,7 +265,7 @@
     },
     {
         "item_no": 25,
-        "area_key": "westernThanalan",
+        "area_key": "easternLaNoscea",
         "coordinate_x": 29,
         "coordinate_y": 33,
         "in_game_start_hour": 18,
