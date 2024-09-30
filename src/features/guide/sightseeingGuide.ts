@@ -1,5 +1,5 @@
-import { SightseeingLog, WeatherReport } from "./dto"
-import { ConvertToEorzeanTime, EorzeanTime } from "./eorzeanTime"
+import { SightseeingLog, WeatherReport } from "../interface/dto"
+import { ConvertToEorzeanTime, EorzeanTime } from "../util/eorzeanTime"
 
 // When the log gonna be achievable
 enum EAchievementPhase {

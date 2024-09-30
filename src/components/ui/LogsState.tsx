@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
-import { GuidedSightseeingLog } from "../features/sightseeingGuide"
-import { LogFilterProps } from "../features/logSorter"
+import { GuidedSightseeingLog } from "../../features/guide/sightseeingGuide"
+import { LogFilterProps } from "../../features/guide/logSorter"
 
 // interface LogsStateProps {
 //     logs: GuidedSightseeingLog[]

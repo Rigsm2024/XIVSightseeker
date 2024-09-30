@@ -1,7 +1,7 @@
 import Image from "next/image"
 import React, { useRef } from 'react';
-import arrowIcon from '../public/icon/arrow-down.svg'
-import { GuidedSightseeingLog } from "../features/sightseeingGuide"
+import arrowIcon from '../../public/icon/arrow-down.svg'
+import { GuidedSightseeingLog } from "../../features/guide/sightseeingGuide"
 
 interface buttonProps {
     text: string

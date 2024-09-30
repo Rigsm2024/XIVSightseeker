@@ -1,11 +1,11 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
-import { GetGuidedSightseeingLogs, GuidedSightseeingLog } from "../features/sightseeingGuide"
-import { GetSortedSightseengLogs, GetLatestRemainingSeconds } from "../features/logSorter"
-import SightHeader from "../components/header"
-import SightTab from "../components/tab"
-import { useLogsState } from "../components/LogsState"
-import SightseeingLogs from "../components/sightseeingLogs"
+import { GetGuidedSightseeingLogs, GuidedSightseeingLog } from "../features/guide/sightseeingGuide"
+import { GetSortedSightseengLogs, GetLatestRemainingSeconds } from "../features/guide/logSorter"
+import SightHeader from "../components/base/header"
+import SightTab from "../components/base/tab"
+import { useLogsState } from "../components/ui/LogsState"
+import SightseeingLogs from "../components/page/sightseeingLogs"
 
 interface SightseekerProps {
   guidedLogs: GuidedSightseeingLog[];

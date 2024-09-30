@@ -1,9 +1,9 @@
 import Image from "next/image"
-import alarmIcon from '../public/icon/clock-hour-4.svg'
-import TextDropdown from "./textDropdown"
-import TimerText from "./timer"
-import { GuidedSightseeingLog } from "../features/sightseeingGuide"
-import { playfair } from "../pages/fonts"
+import alarmIcon from '../../public/icon/clock-hour-4.svg'
+import TextDropdown from "../ui/textDropdown"
+import TimerText from "../ui/timer"
+import { GuidedSightseeingLog } from "../../features/guide/sightseeingGuide"
+import { playfair } from "../../pages/fonts"
 
 interface SightseeingArray {
     logs: GuidedSightseeingLog[]

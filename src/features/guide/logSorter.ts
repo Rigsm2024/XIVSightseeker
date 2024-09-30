@@ -1,4 +1,4 @@
-import { GuidedSightseeingLog } from "../features/sightseeingGuide"
+import { GuidedSightseeingLog } from "./sightseeingGuide"
 
 export interface LogFilterProps {
     startIndex?: number

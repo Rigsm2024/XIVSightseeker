@@ -1,6 +1,6 @@
 import Image from "next/image"
-import sightseeingIcon from '../public/icon/SightseeingLogIcon.svg'
-import githubIcon from '../public/icon/github-mark.svg'
+import sightseeingIcon from '../../public/icon/SightseeingLogIcon.svg'
+import githubIcon from '../../public/icon/github-mark.svg'
 
 export default function SightHeader() {
     return (

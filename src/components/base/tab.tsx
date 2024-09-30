@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { playfair } from "../pages/fonts"
-import { LogFilterProps } from "../features/logSorter"
+import { playfair } from "../../pages/fonts"
+import { LogFilterProps } from "../../features/guide/logSorter"
 
 interface tabProps {
     initialIndex: number
