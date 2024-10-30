@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
 import { GuidedSightseeingLog } from "../features/interface/dataClass"
-import sightseeingGuide from "../features/guide/sightseeingGuide"
 import { GetSortedSightseengLogs, GetLatestRemainingSeconds } from "../features/guide/logSorter"
 import SightHeader from "../components/base/header"
 import SightTab from "../components/base/tab"
@@ -66,7 +65,7 @@ export default function index({ guidedLogs }: SightseekerProps) {
     <>
       <Head>
         <title>XIVSightseeker</title>
-        <meta name="description" content="FFXIV 新生の探検手帳特化型攻略サイト。時間と天候を加味して今どの項目が達成可能なのかを提示します。(本サイトは試用版です)" />
+        <meta name="description" content="FFXIV 新生の探検手帳特化型攻略サイト。時間と天候を加味して今どの項目が達成可能なのかを提示します。" />
       </Head>
       <main>
         <div className='container m-auto px-2 inset-x-0 '>
