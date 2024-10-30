@@ -1,0 +1,30 @@
+{
+    "lookout": {
+        "jp": "見わたす",
+        "en": "Lookout"
+    },
+    "pray": {
+        "jp": "祈る",
+        "en": "Pray"
+    },
+    "sit": {
+        "jp": "座る",
+        "en": "Sit"
+    },
+    "salute": {
+        "jp": "敬礼する",
+        "en": "Salute"
+    },
+    "comfort": {
+        "jp": "なぐさめる",
+        "en": "Comfort"
+    },
+    "point": {
+        "jp": "指さす",
+        "en": "Point"
+    },
+    "psych": {
+        "jp": "活を入れる",
+        "en": "Psych"
+    }
+}
