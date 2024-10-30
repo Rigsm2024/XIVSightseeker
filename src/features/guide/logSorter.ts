@@ -1,4 +1,4 @@
-import { GuidedSightseeingLog } from "./sightseeingGuide"
+import { GuidedSightseeingLog } from "../interface/dataClass"
 
 export interface LogFilterProps {
     startIndex?: number
@@ -9,7 +9,7 @@ export function GetSortedSightseengLogs(source: GuidedSightseeingLog[], props: L
     return source
 
         // filter by tab index
-        .filter(f => f.ItemNo >= (props.startIndex ?? 0) && f.ItemNo <= (props.endIndex ?? 0))
+        .filter(f => f.Data.ItemNo >= (props.startIndex ?? 0) && f.Data.ItemNo <= (props.endIndex ?? 0))
 
         // sort
         .sort((a, b) => {
@@ -21,7 +21,7 @@ export function GetSortedSightseengLogs(source: GuidedSightseeingLog[], props: L
                 return a.PhaseTransitionTime - b.PhaseTransitionTime
             }
 
-            return a.ItemNo - b.ItemNo
+            return a.Data.ItemNo - b.Data.ItemNo
         })
 }
 

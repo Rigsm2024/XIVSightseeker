@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
-import { GetGuidedSightseeingLogs, GuidedSightseeingLog } from "../features/guide/sightseeingGuide"
+import { GuidedSightseeingLog } from "../features/interface/dataClass"
+import sightseeingGuide from "../features/guide/sightseeingGuide"
 import { GetSortedSightseengLogs, GetLatestRemainingSeconds } from "../features/guide/logSorter"
 import SightHeader from "../components/base/header"
 import SightTab from "../components/base/tab"
@@ -19,21 +20,14 @@ async function fetchDatas(isServerSide: boolean) {
   const url = isServerSide ? process.env.SSR_API_URL : process.env.NEXT_PUBLIC_SPA_API_URL
   console.log("Try to fetch. url: " + url)
 
-  // Get sightseeing logs data from server
-  const resLogs = await fetch(url + '/SightseeingLogs', {
+  // Get guided sightseeing logs data from server
+  const resGuides = await fetch(url + 'api/guides', {
     method: 'GET',
     mode: 'cors',
   })
-  const plainLogs = await resLogs.json()
+  const guides = await resGuides.json();
 
-  // Get weather reports data from server
-  const resReports = await fetch(url + '/WeatherReports', {
-    method: 'GET',
-    mode: 'cors',
-  })
-  const reports = await resReports.json()
-
-  return { props: { guidedLogs: GetGuidedSightseeingLogs(plainLogs, reports) } }
+  return { props: { guidedLogs: guides } }
 }
 
 function SetRefreshEvent(logs: GuidedSightseeingLog[], updateSource: (source: GuidedSightseeingLog[]) => void) {

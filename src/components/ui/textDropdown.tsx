@@ -1,7 +1,7 @@
 import Image from "next/image"
 import React, { useRef } from 'react';
 import arrowIcon from '../../public/icon/arrow-down.svg'
-import { GuidedSightseeingLog } from "../../features/guide/sightseeingGuide"
+import { SightseeingLog } from "../../features/interface/dataClass"
 
 interface buttonProps {
     text: string
@@ -32,7 +32,7 @@ const ToggleButton = ({ text, myClass, callback }: buttonProps) => {
     )
 }
 
-const TextDropdown = (log: GuidedSightseeingLog) => {
+const TextDropdown = (log: SightseeingLog) => {
     const textDivId = 'dropdown-text-' + log.ItemNo
     const hintDivId = 'dropdown-hint-' + log.ItemNo
 
@@ -46,12 +46,15 @@ const TextDropdown = (log: GuidedSightseeingLog) => {
                 <div className='card-divider-h my-1'></div>
                 <div className='text-sm text-gray-200 whitespace-pre-wrap p-1 pb-2'>{log.Description}</div>
 
-                {/* TODO: implement hint features */}
-                {/* <ToggleButton text={'Hint'} myClass={'absolute -bottom-7 right-0'} callback={toggleHint} />
-                <div className='hidden w-full' id={`dropdown-hint-${log.ItemNo}`}>
-                    <div className='card-divider-h my-1'></div>
-                    <div className='text-xs text-gray-400 whitespace-pre-wrap p-1'>hint sample</div>
-                </div> */}
+                { log.Hint.length > 0 ?? (
+                    <>
+                        <ToggleButton text={'Hint'} myClass={'absolute -bottom-7 right-0'} callback={toggleHint} />
+                        <div className='hidden w-full' id={`dropdown-hint-${log.ItemNo}`}>
+                            <div className='card-divider-h my-1'></div>
+                            <div className='text-xs text-gray-400 whitespace-pre-wrap p-1'>hint sample</div>
+                        </div>
+                    </>
+                )}
             </div>
         </div>
     );

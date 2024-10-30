@@ -1,0 +1,62 @@
+{
+    "clearSkies": {
+        "jp": "快晴",
+        "en": "Clear Skies"
+    },
+    "fairSkies": {
+        "jp": "晴れ",
+        "en": "Fair Skies"
+    },
+    "heatWaves": {
+        "jp": "灼熱波",
+        "en": "Heat Waves"
+    },
+    "clouds": {
+        "jp": "曇り",
+        "en": "Clouds"
+    },
+    "rain": {
+        "jp": "雨",
+        "en": "Rain"
+    },
+    "showers": {
+        "jp": "暴雨",
+        "en": "Showers"
+    },
+    "thunder": {
+        "jp": "雷",
+        "en": "Thunder"
+    },
+    "thunderstorms": {
+        "jp": "雷雨",
+        "en": "Thunderstorms"
+    },
+    "fog": {
+        "jp": "霧",
+        "en": "Fog"
+    },
+    "snow": {
+        "jp": "雪",
+        "en": "Snow"
+    },
+    "blizzard": {
+        "jp": "吹雪",
+        "en": "Blizzard"
+    },
+    "wind": {
+        "jp": "風",
+        "en": "Wind"
+    },
+    "gales": {
+        "jp": "暴風",
+        "en": "Gales"
+    },
+    "dustStorms": {
+        "jp": "砂塵",
+        "en": "Dust Storms"
+    },
+    "gloom": {
+        "jp": "妖霧",
+        "en": "Gloom"
+    }
+}
