@@ -1,4 +1,4 @@
-import { AreasJson, EmotesJson, SightseeingLogsJson, SightseeingLogTextsJson, WeatherChancesJson, WeathersJson } from "../../data/jsonClass"
+import { AreasJson, EmotesJson, SightseeingLogsJson, SightseeingLogTextsJson, WeatherChancesJson, WeathersJson } from "../interface/jsonClass"
 import { SightseeingLog, WeatherChance } from "../interface/dataClass";
 import { IRepository } from "../interface/interface"
 import path from 'path';
@@ -95,7 +95,7 @@ class JsonRepository implements IRepository {
     }
     
     private loadFile(fileName: string) {
-        const filePath = path.join(process.cwd(), 'data/' + fileName);
+        const filePath = path.join(process.cwd(), 'public', 'data', fileName);
         const fileContents = fs.readFileSync(filePath, 'utf8');
         return JSON.parse(fileContents);
     }

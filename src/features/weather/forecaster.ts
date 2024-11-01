@@ -6,36 +6,49 @@ import { ConvertToEorzeanTime } from "../util/eorzeanTime";
 
 export class WeatherForecaster implements IWeatherForecaster {
 
-    // the count of forecast periods. This means 3 days of EorzeanTime.
+    // the count of forecast periods. This means 3 days in EorzeanTime.
     private forecastPeriodsNumber = 9;
     private algo = new WeatherAlgorithm();
 
     GetWeatherReports(): WeatherReport[] {
+        
+        // Store the necessary computation results in an object in advance
+        const periodicSeconds = this.generateForecastUnixTimestamps(this.forecastPeriodsNumber);
+        const timeStructs = periodicSeconds.map(sec => {
+            const eTime = ConvertToEorzeanTime(sec);
+            const chance = this.algo.GetWeatherChanceAt(eTime);
+
+            return {
+                seconds: sec,
+                chance: chance,
+                eTime: eTime,
+            };
+        });
+        console.log(timeStructs)
+
         const weatherChances = jsonRepository.LoadWeatherChances();
         const areaKeys = Array.from(weatherChances.keys());
-        const weatherReports: WeatherReport[] = areaKeys.map(key => ({ AreaKey: key,  Forecasts: []}));
-        const periodicSeconds = this.generateForecastUnixTimestamps(this.forecastPeriodsNumber);
 
-        // Forecast weather for all periods
-        for (let period = 0; period < periodicSeconds.length; period++) {
+        // Forecast weather for all areas
+        const weatherReports: WeatherReport[] = areaKeys.map(areaKey => {
+            const chanceData = weatherChances.get(areaKey) ?? [];
 
-            // Calculate "weather chance" at this unix seconds
-            const chanceNumber = this.algo.GetWeatherChanceAt(periodicSeconds[period]);
+            // Forecast weather for all periods
+            const forecastedWeathersInThisArea = timeStructs.map(time => {
+                const forecastedWeather = this.algo.DetermineWeatherByChance(time.chance, chanceData);
 
-            // Loop for all areas
-            for (const areaKey of areaKeys) {
-                const chancesAt = weatherChances.get(areaKey) ?? [];
-                
-                const forecastedWeather = this.algo.DetermineWeatherByChance(chanceNumber, chancesAt);
-                const eTime = ConvertToEorzeanTime(periodicSeconds[period]);
-                
-                const target = weatherReports.find(f => f.AreaKey == areaKey);
-                target?.Forecasts.push({
+                return ({
                     WeatherKey: forecastedWeather,
-                    When: eTime.chunkedUnixSeconds,
+                    When: time.eTime.chunkedUnixSeconds,
                 });
-            }
-        }
+            });
+            
+            // Convert to weather report entry
+            return ({
+                AreaKey: areaKey,  
+                Forecasts: forecastedWeathersInThisArea,
+            });
+        });
 
         return weatherReports;
     }

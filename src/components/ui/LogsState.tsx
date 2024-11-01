@@ -9,7 +9,7 @@ import { LogFilterProps } from "../../features/guide/logSorter"
 //     updateFilters: (filters: LogFilterProps) => void
 // }
 
-export const useLogsState = (source: GuidedSightseeingLog[], filterProps: LogFilterProps) => {
+export const UseLogsState = (source: GuidedSightseeingLog[], filterProps: LogFilterProps) => {
     const [logs, setLogs] = useState(source)
     const [filters, setFilters] = useState(filterProps)
 

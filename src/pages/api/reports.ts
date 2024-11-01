@@ -1,11 +1,11 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { SightseeingLog } from "../../features/interface/dataClass"
+import { WeatherReport } from "../../features/interface/dataClass"
 import { WeatherForecaster } from "../../features/weather/forecaster"
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<SightseeingLog>,
+  res: NextApiResponse<WeatherReport[]>,
 ) {
   const forecaster = new WeatherForecaster();
   const report = forecaster.GetWeatherReports();

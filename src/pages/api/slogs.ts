@@ -5,7 +5,7 @@ import jsonRepository from "../../features/repository/jsonRepository"
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<SightseeingLog>,
+  res: NextApiResponse<SightseeingLog[]>,
 ) {
   const slogs = jsonRepository.LoadSightseeingLogs();
 

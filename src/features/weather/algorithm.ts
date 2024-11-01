@@ -1,18 +1,17 @@
 import { WeatherChance } from "../interface/dataClass";
-import { ConvertToEorzeanTime } from "../util/eorzeanTime";
+import { EorzeanTime } from "../util/eorzeanTime";
 
 export class WeatherAlgorithm {
 
-    // Create "Weather chance" value from unix seconds
+    // Create "Weather chance" value from EorzeanTime
     // Returns 0-99 int value
-    GetWeatherChanceAt(unixSeconds: number): number {
-        const eorzeanTime = ConvertToEorzeanTime(unixSeconds);
+    GetWeatherChanceAt(eorzeanTime: EorzeanTime): number {
 
         // WeatherChance calculation algorithm
         const seed = eorzeanTime.days * 100 + eorzeanTime.chunk;
 
-        const step1 = (seed << 11) ^ seed;
-        const step2 = (step1 >> 8) ^ step1;
+        const step1 = ((seed << 11) ^ seed) >>> 0;
+        const step2 = ((step1 >>> 8) ^ step1) >>> 0;
 
         const weatherChance = step2 % 100;
 

@@ -4,7 +4,7 @@ import { GuidedSightseeingLog } from "../features/interface/dataClass"
 import { GetSortedSightseengLogs, GetLatestRemainingSeconds } from "../features/guide/logSorter"
 import SightHeader from "../components/base/header"
 import SightTab from "../components/base/tab"
-import { useLogsState } from "../components/ui/LogsState"
+import { UseLogsState } from "../components/ui/LogsState"
 import SightseeingLogs from "../components/page/sightseeingLogs"
 
 interface SightseekerProps {
@@ -16,7 +16,7 @@ export async function getServerSideProps() {
 }
 
 async function fetchDatas(isServerSide: boolean) {
-  const url = isServerSide ? process.env.SSR_API_URL : process.env.NEXT_PUBLIC_SPA_API_URL
+  const url = isServerSide ? "http://localhost:3000/" : "/"
   console.log("Try to fetch. url: " + url)
 
   // Get guided sightseeing logs data from server
@@ -55,7 +55,7 @@ export default function index({ guidedLogs }: SightseekerProps) {
   const initialFilter = { startIndex: 1, endIndex: 20 }
 
   // get custom hooks for values updated by multiple modules
-  const { logs, filters, updateSource, updateFilters } = useLogsState(guidedLogs, initialFilter)
+  const { logs, filters, updateSource, updateFilters } = UseLogsState(guidedLogs, initialFilter)
   const sorted = GetSortedSightseengLogs(logs, filters)
 
   // set timeout for refreshing when some achievable conditions are changed
