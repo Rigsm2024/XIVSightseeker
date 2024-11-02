@@ -46,14 +46,14 @@ const TextDropdown = (log: SightseeingLog) => {
                 <div className='card-divider-h my-1'></div>
                 <div className='text-sm text-gray-200 whitespace-pre-wrap p-1 pb-2'>{log.Description}</div>
 
-                { log.Hint.length > 0 ?? (
-                    <>
-                        <ToggleButton text={'Hint'} myClass={'absolute -bottom-7 right-0'} callback={toggleHint} />
+                { log.Hint.length > 0 && (
+                    <div className='relative mt-2'>
+                        <ToggleButton text={'Hint'} myClass={'absolute -top-7 right-0'} callback={toggleHint} />
                         <div className='hidden w-full' id={`dropdown-hint-${log.ItemNo}`}>
                             <div className='card-divider-h my-1'></div>
-                            <div className='text-xs text-gray-400 whitespace-pre-wrap p-1'>hint sample</div>
+                            <div className='text-xs text-gray-300 whitespace-pre-wrap p-1'>{log.Hint}</div>
                         </div>
-                    </>
+                    </div>
                 )}
             </div>
         </div>

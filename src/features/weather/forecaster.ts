@@ -24,7 +24,6 @@ export class WeatherForecaster implements IWeatherForecaster {
                 eTime: eTime,
             };
         });
-        console.log(timeStructs)
 
         const weatherChances = jsonRepository.LoadWeatherChances();
         const areaKeys = Array.from(weatherChances.keys());

@@ -5,6 +5,7 @@ services:
   frontend:
     build:
       context: .
+      dockerfile: Dockerfile.local
     ports:
       - "3000:3000"
     volumes:
