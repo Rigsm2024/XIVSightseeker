@@ -50,7 +50,8 @@ class SightseeingGuide implements ISightseeingGuide {
             return {
                 Data: log,
                 Phase: phase,
-                PhaseTransitionTime: phaseTransitionTime
+                PhaseTransitionTime: phaseTransitionTime,
+                Visivility: true,
             }
         })
     

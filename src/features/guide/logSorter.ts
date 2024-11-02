@@ -2,35 +2,60 @@ import { GuidedSightseeingLog } from "../interface/dataClass"
 import { EAchievementPhase } from "../interface/enum";
 
 export interface LogFilterProps {
-    startIndex?: number
-    endIndex?: number
+    tab?: number,
+    startIndex?: number,
+    endIndex?: number,
+    completed?: number[],
 }
 
 export function GetSortedSightseengLogs(source: GuidedSightseeingLog[], props: LogFilterProps) {
-    return source
+    const visivilityUpdated = SetVisivility(source, props);
+    const sorter = GetSortFunction(props);
+    
+    return visivilityUpdated.sort(sorter);
+}
 
-        // filter by tab index
-        .filter(f => f.Data.ItemNo >= (props.startIndex ?? 0) && f.Data.ItemNo <= (props.endIndex ?? 0))
+function SetVisivility(source: GuidedSightseeingLog[], filters: LogFilterProps) {
+    // Make base value that visivility is cleared
+    const target = source.map(glog => ({
+        Data: glog.Data,
+        Phase: glog.Phase,
+        PhaseTransitionTime: glog.PhaseTransitionTime,
+        Visivility: false
+    }));
 
-        // sort
-        .sort((a, b) => {
-            if (a.Phase != b.Phase) {
-                return a.Phase - b.Phase
-            }
-            
-            if (a.PhaseTransitionTime != b.PhaseTransitionTime) {
-                return a.PhaseTransitionTime - b.PhaseTransitionTime
-            }
+    const visibles = target
+        // Are items in the tab range
+        .filter(f => f.Data.ItemNo >= (filters.startIndex ?? 0) && f.Data.ItemNo <= (filters.endIndex ?? 0))
 
-            return a.Data.ItemNo - b.Data.ItemNo
-        });
+        // Are items not completed yet
+        .filter(f => !filters.completed?.includes(f.Data.ItemNo));
+        
+    visibles.forEach(x => x.Visivility = true);
+
+    // returns full glogs
+    return target;
+}
+
+function GetSortFunction(filters: LogFilterProps) {
+    return (a: GuidedSightseeingLog, b: GuidedSightseeingLog) => {
+        if (a.Phase != b.Phase) {
+            return a.Phase - b.Phase
+        }
+        
+        if (a.PhaseTransitionTime != b.PhaseTransitionTime) {
+            return a.PhaseTransitionTime - b.PhaseTransitionTime
+        }
+
+        return a.Data.ItemNo - b.Data.ItemNo
+    }
 }
 
 export function GetLatestRemainingSeconds(source: GuidedSightseeingLog[]) {
     if (source.length == 0) {
         // if there are no items, return 1 sec to wait.
-        console.warn("GetLatestRemainingSeconds was called with empty arg.");
-        return 1;
+        //console.warn("GetLatestRemainingSeconds was called with empty arg.");
+        return 5;
     }
 
     const isInitial = source.some(f => f.Phase == EAchievementPhase.None);

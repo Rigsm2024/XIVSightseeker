@@ -10,26 +10,24 @@ interface SightseeingLogsProps {
     updateLogs: (source: GuidedSightseeingLog[]) => void,
 }
 
-// Fetch Weather Reports. Always called from client.
-async function fetchWeatherReports() {
-    const url = "/api/reports";
-    console.log("Try to fetch. url: " + url);
-
-    const resReports = await fetch(url + '', {
-        method: 'GET',
-        mode: 'cors',
-    })
-    return await resReports.json();
-}
-
 // Set timeout for refreshing when some achievable conditions are changed
 function SetRefreshEvent(logs: GuidedSightseeingLog[], updateSource: (source: GuidedSightseeingLog[]) => void) {
+    
+    // Fetch Weather Reports. Always called from client.
+    const fetchWeatherReports = async () => {
+        const resReports = await fetch('/api/reports', {
+            method: 'GET',
+            mode: 'cors',
+        })
+        return await resReports.json();
+    };
+    
     useEffect(() => {
-        let interval = GetLatestRemainingSeconds(logs) * 1000
-        console.log("Set refreshing timer. interval: " + interval)
+        let interval = GetLatestRemainingSeconds(logs) * 1000;
+        //console.log("Set refreshing timer. interval: " + interval);
 
         const worker = new Worker(new URL('../../public/timerWorker.js', import.meta.url));
-        worker.postMessage(interval)
+        worker.postMessage(interval);
         worker.onmessage = _ => {
             // Update sightseeing logs data when some item's phase is changed.
             fetchWeatherReports()
@@ -39,10 +37,11 @@ function SetRefreshEvent(logs: GuidedSightseeingLog[], updateSource: (source: Gu
                     updateSource(guidedLogs);
                 })
                 .catch(err => console.log(err))
-        }
+            ;
+        };
 
         return () => worker.terminate();
-    }, [logs, updateSource])
+    }, [logs, updateSource]);
 }
 
 const SightseeingLogs = ({ logs, filters, updateLogs }: SightseeingLogsProps) => {
@@ -55,9 +54,12 @@ const SightseeingLogs = ({ logs, filters, updateLogs }: SightseeingLogsProps) =>
 
     return (
         <div className='w-full flex flex-row flex-wrap justify-center md:justify-between xl:justify-start lg:px-14 border-b prefer-border-color p-2 mr-1 my-2'>
-            {sortedLogs.map(glog => (
-                <SightseeingLogItem key={glog.Data.ItemNo} glog={glog} />
-            ))}
+            {sortedLogs
+                .filter(f => f.Visivility)
+                .map(glog => (
+                    <SightseeingLogItem key={glog.Data.ItemNo} glog={glog} />
+                ))
+            }
         </div>
     )
 }

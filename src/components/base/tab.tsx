@@ -1,21 +1,25 @@
 import { useState } from 'react'
 import { playfair } from "../../pages/fonts"
 import { LogFilterProps } from "../../features/guide/logSorter"
+import { WriteFilterToLocalStrage } from '../ui/LocalStrageAdapter';
 
 interface tabProps {
-    initialIndex: number
+    filters: LogFilterProps
     updateFilters: (filters: LogFilterProps) => void
 }
 
-export default function SightTab({initialIndex, updateFilters}: tabProps) {
-    const [tabIndex, setTabIndex] = useState(initialIndex);
+export default function SightTab({filters, updateFilters}: tabProps) {
+    const tabIndex = filters.tab;
+
     const updateTab = (index: number) => {
-        setTabIndex(index)
+        const newFilter = {
+            tab: index,
+            startIndex: (index == 0) ? 1 : 21, 
+            endIndex: (index == 0) ? 20 : 80,
+        };
 
-        const startIndex = (index == 0) ? 1 : 21
-        const endIndex = (index == 0) ? 20 : 80
-
-        updateFilters({startIndex, endIndex})
+        updateFilters(newFilter);
+        WriteFilterToLocalStrage(newFilter);
     }
     
     const baseClasses = 'basis-1/2 text-gray-600 py-2 block hover:text-blue-500 focus:outline-none'

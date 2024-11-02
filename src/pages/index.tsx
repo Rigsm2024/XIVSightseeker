@@ -1,14 +1,16 @@
 import Head from 'next/head';
-import { GuidedSightseeingLog, SightseeingLog } from "../features/interface/dataClass"
+import { SightseeingLog } from "../features/interface/dataClass"
 import SightHeader from "../components/base/header"
 import SightTab from "../components/base/tab"
 import SightFooter from "../components/base/footer"
 import { UseLogsState } from "../components/ui/LogsState"
 import SightseeingLogs from "../components/page/sightseeingLogs"
 import { EAchievementPhase } from '@/features/interface/enum';
+import { useEffect } from 'react';
+import { ReadFilterFromLocalStrage } from '@/components/ui/LocalStrageAdapter';
 
 interface SightseekerProps {
-  initalLogs: GuidedSightseeingLog[];
+  initalLogs: SightseeingLog[];
 }
 
 // Load static sightseeing logs data from api
@@ -23,25 +25,41 @@ export async function getServerSideProps() {
   })
   const slogs: SightseeingLog[] = await resLogs.json();
 
-  // Make initail value of guided logs.
-  const initialGuidedSlogs = slogs.map(log => {
-    return {
-      Data: log,
-      PhaseTransitionTime: 0,
-      Phase: EAchievementPhase.None,
-    };
-  });
+  return { props: { initalLogs: slogs } }
+}
 
-  return { props: { initalLogs: initialGuidedSlogs } }
+// Temporary values until the weather report completed.
+const CreateInitialValues = (slogs: SightseeingLog[]) => {
+  const initialGuidedSlogs = slogs.map(log => ({
+    Data: log,
+    PhaseTransitionTime: 0,
+    Phase: EAchievementPhase.None,
+    Visivility: true,
+  }));
+
+  const initialFilters = {
+    tab: 0,
+    startIndex: 1,
+    endIndex: 9,
+    completed: [],
+  }
+
+  return { glogs: initialGuidedSlogs, filters: initialFilters };
 }
 
 export default function index({ initalLogs }: SightseekerProps) {
-  // TODO: prepare it with users history
-  const initialTab = 0
-  const initialFilter = { startIndex: 1, endIndex: 20 }
+  const initialValues = CreateInitialValues(initalLogs);
 
   // get custom hooks for values updated by multiple modules
-  const { logs, filters, updateSource, updateFilters } = UseLogsState(initalLogs, initialFilter)
+  const { logs, filters, updateSource, updateFilters } = UseLogsState(initialValues.glogs, initialValues.filters);
+
+  // Read Local Strage
+  useEffect(() => {
+    const filtersInLocalStrage = ReadFilterFromLocalStrage();
+    if (filtersInLocalStrage !== null) {
+      updateFilters(filtersInLocalStrage);
+    }
+  }, []);
 
   return (
     <>
@@ -52,12 +70,11 @@ export default function index({ initalLogs }: SightseekerProps) {
       <main>
         <div className='container m-auto px-2 inset-x-0 '>
           <SightHeader />
-          <SightTab initialIndex={initialTab} updateFilters={updateFilters} />
+          <SightTab filters={filters} updateFilters={updateFilters} />
           <SightseeingLogs logs={logs} filters={filters} updateLogs={updateSource} />
           <SightFooter />
         </div>
       </main>
     </>
-
   )
 }

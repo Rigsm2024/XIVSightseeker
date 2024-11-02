@@ -13,8 +13,10 @@ export const UseLogsState = (source: GuidedSightseeingLog[], filterProps: LogFil
     const updateFilters = useCallback((newFilters: LogFilterProps) => {
         // to update difference only
         const updated = {
+            tab: newFilters.tab ?? filters.tab,
             startIndex: newFilters.startIndex ?? filters.startIndex,
             endIndex: newFilters.endIndex ?? filters.endIndex,
+            completed: newFilters.completed ?? filters.completed,
         }
         setFilters(updated)
     }, [])
