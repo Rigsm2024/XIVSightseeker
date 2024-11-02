@@ -51,6 +51,10 @@ body {
     opacity: 0.7;
   }
 
+  .waiting-for-guided {
+    opacity: 0.5;
+  }
+
   .metalic-border {
     position: absolute;
     top: 0;

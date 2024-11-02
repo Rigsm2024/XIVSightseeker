@@ -1,93 +1,65 @@
-import Image from "next/image"
-import alarmIcon from '../../public/icon/clock-hour-4.svg'
-import TextDropdown from "../ui/textDropdown"
-import TimerText from "../ui/timer"
-import { GuidedSightseeingLog } from "../../features/interface/dataClass"
-import { playfair } from "../../pages/fonts"
+import { GuidedSightseeingLog, SightseeingLog } from "../../features/interface/dataClass"
+import SightseeingLogItem from "../ui/sightseeingLogItem"
+import { useEffect } from 'react';
+import { GetLatestRemainingSeconds, GetSortedSightseengLogs, LogFilterProps } from "../../features/guide/logSorter"
+import sightseeingGuide from "../../features/guide/sightseeingGuide"
 
-interface SightseeingArray {
-    logs: GuidedSightseeingLog[]
+interface SightseeingLogsProps {
+    logs: GuidedSightseeingLog[],
+    filters: LogFilterProps,
+    updateLogs: (source: GuidedSightseeingLog[]) => void,
 }
 
-interface SightseeingItemProps {
-    glog: GuidedSightseeingLog
-    phaseClass: string
+// Fetch Weather Reports. Always called from client.
+async function fetchWeatherReports() {
+    const url = "/api/reports";
+    console.log("Try to fetch. url: " + url);
+
+    const resReports = await fetch(url + '', {
+        method: 'GET',
+        mode: 'cors',
+    })
+    return await resReports.json();
 }
 
-function SightseeingLogItem({ glog, phaseClass }: SightseeingItemProps) {
+// Set timeout for refreshing when some achievable conditions are changed
+function SetRefreshEvent(logs: GuidedSightseeingLog[], updateSource: (source: GuidedSightseeingLog[]) => void) {
+    useEffect(() => {
+        let interval = GetLatestRemainingSeconds(logs) * 1000
+        console.log("Set refreshing timer. interval: " + interval)
 
-    const log = glog.Data
-    const mapUrl = `/map/${log.ItemNo.toString().padStart(3, '0')}.jpeg`
-    const mapImage = <Image src={mapUrl} width={320} height={180} alt='map' priority={false} className='left-0 right-0 m-auto' />
-    const weather1Icon = <Image src={`/img/${log.Weather1Key}.png`} width={20} height={20} alt={log.Weather1Key} title={log.Weather1Name} />
-    const weather2Icon = log.Weather2Key != null ? <Image src={`/img/${log.Weather2Key}.png`} width={20} height={20} alt={log.Weather2Key} title={log.Weather2Name} /> : null
-    const emoteIcon = <Image src={`/img/${log.EmoteKey}.png`} width={40} height={40} alt={log.EmoteName} />
+        const worker = new Worker(new URL('../../public/timerWorker.js', import.meta.url));
+        worker.postMessage(interval)
+        worker.onmessage = _ => {
+            // Update sightseeing logs data when some item's phase is changed.
+            fetchWeatherReports()
+                .then(reports => {
+                    const slogs = logs.map(f => f.Data);
+                    const guidedLogs = sightseeingGuide.GetGuidedSightseeingLogs(slogs, reports);
+                    updateSource(guidedLogs);
+                })
+                .catch(err => console.log(err))
+        }
+
+        return () => worker.terminate();
+    }, [logs, updateSource])
+}
+
+const SightseeingLogs = ({ logs, filters, updateLogs }: SightseeingLogsProps) => {
+
+    // Apply filter to guided sightseeing logs
+    const sortedLogs = GetSortedSightseengLogs(logs, filters)
+
+    // Phase transition event
+    SetRefreshEvent(sortedLogs, updateLogs);
 
     return (
-        <div className={`${phaseClass} basis-full max-w-sm md:basis-1/2 self-start relative box-border p-1 pr-2 my-1`}>
-            <div className='sightseeing-log-container flex flex-col flex-wrap'>
-                <div className='flex flex-row items-center gap-2 m-0.5 text-gray-300'>
-                    <div className={`text-xl mb-0.5 ml-1 ${playfair.className}`}>{log.ItemNo.toString().padStart(3, '0')}</div>
-                    <div>{log.AreaName}</div>
-                    <div className='text-xs'>ET{log.StartHour}-{log.EndHour}</div>
-                </div>
-                <div className='card-divider-h'></div>
-                <div className='flex flex-row'>
-                    <div className='flex flex-col flex-1'>
-                        <div className='flex flex-row items-center'>
-                            <Image src={alarmIcon} width={24} height={24} alt='alarm icon' className='invert m-2 ml-1' />
-                            <TimerText initialTime={glog.PhaseTransitionTime} phase={glog.Phase} />
-                        </div>
-                        <div className='relative'>
-                            <div className='w-full rounded overflow-hidden'>
-                                {mapImage}
-                            </div>
-                            <div className='absolute top-0 right-0 m-1 flex flex-row gap-1'>
-                                {weather1Icon}
-                                {weather2Icon}
-                            </div>
-                            <div className={`absolute bottom-0 right-0 px-1 bg-gray-800 bg-opacity-75 rounded shadow-md text-white ${playfair.className}`}>X:{log.CoordinateX} Y:{log.CoordinateY}</div>
-                        </div>
-                    </div>
-                    <div className='card-divider-v m-1'></div>
-                    <div className='flex flex-col items-center justify-center basis-16'>
-                        {emoteIcon}
-                        <div className='text-xs m-1 w-12 text-center text-white'>{log.EmoteName}</div>
-                    </div>
-                </div>
-                <TextDropdown {...log}/>
-            </div>
-            <div className='metalic-border'></div>
+        <div className='w-full flex flex-row flex-wrap justify-center md:justify-between xl:justify-start lg:px-14 border-b prefer-border-color p-2 mr-1 my-2'>
+            {sortedLogs.map(glog => (
+                <SightseeingLogItem key={glog.Data.ItemNo} glog={glog} />
+            ))}
         </div>
     )
 }
 
-export default function SightseeingLogs({ logs }: SightseeingArray) {
-    const currentlyAchievables = logs.filter(f => f.Phase == 1)
-    const soonAchievables = logs.filter(f => f.Phase == 2)
-    const notAchievables = logs.filter(f => f.Phase == 3)
-
-    const baseClasses = 'w-full flex flex-row flex-wrap justify-center md:justify-between xl:justify-start lg:px-14 border-b prefer-border-color p-2 mr-1 my-2'
-    return (
-        <div>
-            <div className={`${baseClasses}`}>
-                {currentlyAchievables.map(log => (
-                    <SightseeingLogItem key={log.Data.ItemNo} glog={log} phaseClass='currently-achievable'/>
-                ))}
-            </div>
-            <div className={`${baseClasses}`}>
-                {soonAchievables.map(log => (
-                    <SightseeingLogItem key={log.Data.ItemNo} glog={log} phaseClass='soon-achievable'/>
-                ))}
-            </div>
-            <div className={`${baseClasses}`}>
-                {notAchievables.map(log => (
-                    <SightseeingLogItem key={log.Data.ItemNo} glog={log} phaseClass='not-achievables'/>
-                ))}
-            </div>
-            <div className='w-full flex items-center justify-center'>
-                <span className='text-xs mt-2 mb-4 opacity-50'>© SQUARE ENIX</span>
-            </div>
-        </div>
-    )
-}
+export default SightseeingLogs;

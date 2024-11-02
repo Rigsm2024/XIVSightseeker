@@ -60,7 +60,11 @@ export default function TimerText({initialTime, phase}: CountdownTimerProps) {
             )
 
         case 3:
+            return <div className='text-gray-200'>しばらく達成不可</div>
+
+        case 0:
         default:
-            return <div className='ext-gray-200'>しばらく達成不可</div>
+            return <div className='text-gray-400'>Loading...</div>
+            
     }
 }

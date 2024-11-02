@@ -1,4 +1,5 @@
 import { GuidedSightseeingLog } from "../interface/dataClass"
+import { EAchievementPhase } from "../interface/enum";
 
 export interface LogFilterProps {
     startIndex?: number
@@ -31,10 +32,15 @@ export function GetLatestRemainingSeconds(source: GuidedSightseeingLog[]) {
         console.warn("GetLatestRemainingSeconds was called with empty arg.");
         return 1;
     }
+
+    const isInitial = source.some(f => f.Phase == EAchievementPhase.None);
+    if (isInitial) {
+        return 0;
+    }
     
     const currentUnixSeconds = Math.floor(Date.now() / 1000);
     const sorted = source
-        .filter(f => f.Phase != 3)
+        .filter(f => f.Phase != EAchievementPhase.NotAchievableForAWhile)
         .sort((a, b) => a.PhaseTransitionTime - b.PhaseTransitionTime);
     
     return sorted[0].PhaseTransitionTime - currentUnixSeconds;
