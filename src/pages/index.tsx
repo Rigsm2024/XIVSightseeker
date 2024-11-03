@@ -51,7 +51,7 @@ const CreateInitialValues = (slogs: SightseeingLog[]) => {
   return { glogs: initialGuidedSlogs, filters: initialFilters };
 }
 
-export default function index({ initalLogs }: SightseekerProps) {
+export default function Index({ initalLogs }: SightseekerProps) {
   const initialValues = CreateInitialValues(initalLogs);
 
   // get custom hooks for values updated by multiple modules
@@ -72,7 +72,7 @@ export default function index({ initalLogs }: SightseekerProps) {
         <meta name="description" content="FFXIV 新生の探検手帳特化型攻略サイト。時間と天候を加味して今どの項目が達成可能なのかを提示します。" />
       </Head>
       <main>
-        <div className='container relative m-auto px-2 inset-x-0 '>
+        <div className='container relative m-auto px-2 inset-x-0'>
           <SightHeader filters={filters} updateFilters={updateFilters} />
           <SightTab filters={filters} updateFilters={updateFilters} />
           <SightseeingLogs logs={logs} filters={filters} updateLogs={updateSource} />

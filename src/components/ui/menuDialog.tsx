@@ -8,7 +8,7 @@ interface menuProps {
     updateFilters: (filters: LogFilterProps) => void
 }
 
-const menuDialog = ({ filters, updateFilters }: menuProps) => {
+const MenuDialog = ({ filters, updateFilters }: menuProps) => {
     // Prepare react events
     const [sorterIndex, setSelected] = useState<number>(filters.sortOrder ?? 0);
     const handleSorter = (index: number) => {
@@ -58,4 +58,4 @@ const menuDialog = ({ filters, updateFilters }: menuProps) => {
     )
 }
 
-export default menuDialog;
+export default MenuDialog;

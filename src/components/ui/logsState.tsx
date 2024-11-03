@@ -25,5 +25,5 @@ export const UseLogsState = (source: GuidedSightseeingLog[], filterProps: LogFil
         WriteFilterToLocalStrage(updated);
     }, [filters]);
 
-    return {logs, filters, updateSource, updateFilters}
+    return { logs, filters, updateSource, updateFilters }
 }

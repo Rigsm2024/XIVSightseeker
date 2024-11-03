@@ -7,11 +7,11 @@ import { GetLatestRemainingSeconds } from "@/features/guide/logSorter";
 
 export default function handler(
     req: NextApiRequest,
-    res: NextApiResponse<number>,
+    res: NextApiResponse,
 ) {
     const { item, periods } = req.query;
-    const itemNo = parseInt(item, 10);
-    const periodsNo = parseInt(periods, 10);
+    const itemNo = parseInt(item as string, 10);
+    const periodsNo = parseInt(periods as string, 10);
 
     // Check input
     if (periodsNo > 1000) {
