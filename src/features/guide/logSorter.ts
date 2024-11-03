@@ -1,11 +1,18 @@
 import { GuidedSightseeingLog } from "../interface/dataClass"
 import { EAchievementPhase } from "../interface/enum";
 
+export enum ESortOrder {
+    Achievable = 0,
+    ItemNo = 1,
+}
+
 export interface LogFilterProps {
     tab?: number,
     startIndex?: number,
     endIndex?: number,
     completed?: number[],
+    sortOrder?: ESortOrder,
+    showsComp?: boolean,
 }
 
 export function GetSortedSightseengLogs(source: GuidedSightseeingLog[], props: LogFilterProps) {
@@ -38,17 +45,21 @@ function SetVisivility(source: GuidedSightseeingLog[], filters: LogFilterProps) 
 }
 
 function GetSortFunction(filters: LogFilterProps) {
-    return (a: GuidedSightseeingLog, b: GuidedSightseeingLog) => {
-        if (a.Phase != b.Phase) {
-            return a.Phase - b.Phase
+    if (filters.sortOrder === ESortOrder.Achievable) {
+        return (a: GuidedSightseeingLog, b: GuidedSightseeingLog) => {
+            if (a.Phase != b.Phase) {
+                return a.Phase - b.Phase
+            }
+            
+            if (a.PhaseTransitionTime != b.PhaseTransitionTime) {
+                return a.PhaseTransitionTime - b.PhaseTransitionTime
+            }
+    
+            return a.Data.ItemNo - b.Data.ItemNo
         }
-        
-        if (a.PhaseTransitionTime != b.PhaseTransitionTime) {
-            return a.PhaseTransitionTime - b.PhaseTransitionTime
-        }
-
-        return a.Data.ItemNo - b.Data.ItemNo
     }
+    
+    return (a: GuidedSightseeingLog, b: GuidedSightseeingLog) => a.Data.ItemNo - b.Data.ItemNo;
 }
 
 export function GetLatestRemainingSeconds(source: GuidedSightseeingLog[]) {

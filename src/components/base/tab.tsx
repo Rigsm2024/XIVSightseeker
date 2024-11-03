@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { playfair } from "../../pages/fonts"
 import { LogFilterProps } from "../../features/guide/logSorter"
-import { WriteFilterToLocalStrage } from '../ui/LocalStrageAdapter';
 
 interface tabProps {
     filters: LogFilterProps
@@ -19,7 +18,6 @@ export default function SightTab({filters, updateFilters}: tabProps) {
         };
 
         updateFilters(newFilter);
-        WriteFilterToLocalStrage(newFilter);
     }
     
     const baseClasses = 'basis-1/2 text-gray-600 py-2 block hover:text-blue-500 focus:outline-none'

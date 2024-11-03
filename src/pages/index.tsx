@@ -1,13 +1,15 @@
 import Head from 'next/head';
 import { SightseeingLog } from "../features/interface/dataClass"
 import SightHeader from "../components/base/header"
+import FilterEditor from '@/components/ui/menuDialog';
 import SightTab from "../components/base/tab"
 import SightFooter from "../components/base/footer"
-import { UseLogsState } from "../components/ui/LogsState"
+import { UseLogsState } from "../components/ui/logsState"
 import SightseeingLogs from "../components/page/sightseeingLogs"
 import { EAchievementPhase } from '@/features/interface/enum';
 import { useEffect } from 'react';
-import { ReadFilterFromLocalStrage } from '@/components/ui/LocalStrageAdapter';
+import { ReadFilterFromLocalStrage } from '@/components/ui/localStrageAdapter';
+import { LogFilterProps } from '@/features/guide/logSorter';
 
 interface SightseekerProps {
   initalLogs: SightseeingLog[];
@@ -37,11 +39,13 @@ const CreateInitialValues = (slogs: SightseeingLog[]) => {
     Visivility: true,
   }));
 
-  const initialFilters = {
+  const initialFilters: LogFilterProps = {
     tab: 0,
     startIndex: 1,
     endIndex: 9,
     completed: [],
+    sortOrder: 0,
+    showsComp: false,
   }
 
   return { glogs: initialGuidedSlogs, filters: initialFilters };
@@ -68,8 +72,8 @@ export default function index({ initalLogs }: SightseekerProps) {
         <meta name="description" content="FFXIV 新生の探検手帳特化型攻略サイト。時間と天候を加味して今どの項目が達成可能なのかを提示します。" />
       </Head>
       <main>
-        <div className='container m-auto px-2 inset-x-0 '>
-          <SightHeader />
+        <div className='container relative m-auto px-2 inset-x-0 '>
+          <SightHeader filters={filters} updateFilters={updateFilters} />
           <SightTab filters={filters} updateFilters={updateFilters} />
           <SightseeingLogs logs={logs} filters={filters} updateLogs={updateSource} />
           <SightFooter />
