@@ -51,8 +51,8 @@ const menuDialog = ({ filters, updateFilters }: menuProps) => {
                 達成済みを表示
             </div>
 
-            <div className="bg-gray-800 hover:bg-gray-700 flex justify-center py-2 mt-3">
-                <a href='https://github.com/Rigsm2024/XIVSightseeker' title='source code' className='relative w-full'>
+            <div className="flex justify-center py-2 mt-2">
+                <a href='https://github.com/Rigsm2024/XIVSightseeker' title='source code' className='relative'>
                     <Image
                         src={githubIcon}
                         width={24}

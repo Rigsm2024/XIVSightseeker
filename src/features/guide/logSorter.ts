@@ -64,13 +64,13 @@ function GetSortFunction(filters: LogFilterProps) {
 
 export function GetLatestRemainingSeconds(source: GuidedSightseeingLog[]) {
     if (source.length == 0) {
-        // if there are no items, return 1 sec to wait.
-        //console.warn("GetLatestRemainingSeconds was called with empty arg.");
-        return 5;
+        // if there is no items, return 1 sec to wait.
+        return 1;
     }
 
     const isInitial = source.some(f => f.Phase == EAchievementPhase.None);
     if (isInitial) {
+        // if there is init item, return 0 sec to update.
         return 0;
     }
     
@@ -78,6 +78,10 @@ export function GetLatestRemainingSeconds(source: GuidedSightseeingLog[]) {
     const sorted = source
         .filter(f => f.Phase != EAchievementPhase.NotAchievableForAWhile)
         .sort((a, b) => a.PhaseTransitionTime - b.PhaseTransitionTime);
+    if (sorted.length == 0) {
+        // id there is no achivable item, return -1.
+        return -1;
+    }
     
     return sorted[0].PhaseTransitionTime - currentUnixSeconds;
 }

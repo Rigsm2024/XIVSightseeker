@@ -52,6 +52,43 @@ export class WeatherForecaster implements IWeatherForecaster {
         return weatherReports;
     }
 
+    // Forecast for specific area in long term periods.
+    GetLongWeathersIn(areaKey: string, chunkNumber: number): WeatherReport[] {
+        const periodicSeconds = this.generateForecastUnixTimestamps(chunkNumber);
+        const timeStructs = periodicSeconds.map(sec => {
+            const eTime = ConvertToEorzeanTime(sec);
+            const chance = this.algo.GetWeatherChanceAt(eTime);
+
+            return {
+                seconds: sec,
+                chance: chance,
+                eTime: eTime,
+            };
+        });
+
+        const weatherChances = jsonRepository.LoadWeatherChances();
+        const targetChances = weatherChances.get(areaKey);
+        if (targetChances == undefined) {
+            return [];
+        }
+
+        // Forecast weather for all periods
+        const forecastedWeathersInThisArea = timeStructs.map(time => {
+            const forecastedWeather = this.algo.DetermineWeatherByChance(time.chance, targetChances);
+
+            return ({
+                WeatherKey: forecastedWeather,
+                When: time.eTime.chunkedUnixSeconds,
+            });
+        });
+        
+        // Convert to weather report entry
+        return [{
+            AreaKey: areaKey,  
+            Forecasts: forecastedWeathersInThisArea,
+        }];
+    }
+
     // Generate an array of unix timestamps for weather forecasting
     private generateForecastUnixTimestamps(count: number): number[] {
         // 8 Eorzean hours time span in seconds
