@@ -28,30 +28,21 @@ const menuDialog = ({ filters, updateFilters }: menuProps) => {
 
     return (
         <div className="absolute flex flex-col top-14 right-0 z-20 w-52 rounded-lg overflow-hidden bg-gray-900">
-            <div 
-                onClick={() => handleSorter(0)}
-                className={`${menuBase} ${sorterIndex == 0 ? "menu-selected" : ""}`}
-            >
+            <div onClick={() => handleSorter(0)} className={`${menuBase} ${sorterIndex == 0 ? "menu-selected" : ""}`}>
                 達成可能順
             </div>
             <div className='border-b border-gray-700'></div>
-            <div 
-                onClick={() => handleSorter(1)}
-                className={`${menuBase} ${sorterIndex == 1 ? "menu-selected" : ""}`}
-            >
+            <div onClick={() => handleSorter(1)} className={`${menuBase} ${sorterIndex == 1 ? "menu-selected" : ""}`}>
                 番号順
             </div>
             
             <div className='mt-3'></div>
 
-            <div 
-                onClick={toggleShowsComp}
-                className={`${menuBase} ${showsComp ? "menu-selected" : ""}`}
-            >
+            <div onClick={toggleShowsComp} className={`${menuBase} ${showsComp ? "menu-selected" : ""}`}>
                 達成済みを表示
             </div>
 
-            <div className="flex justify-center py-2 mt-2">
+            <div className="flex justify-center py-2 mt-1">
                 <a href='https://github.com/Rigsm2024/XIVSightseeker' title='source code' className='relative'>
                     <Image
                         src={githubIcon}
