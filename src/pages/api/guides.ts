@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { GuidedSightseeingLog } from "../../features/interface/dataClass"
 import jsonRepository from "../../features/repository/jsonRepository"
 import { WeatherForecaster } from "../../features/weather/forecaster"
-import sightseeingGuide from "../../features/guide/sightseeingGuide"
+import SightseeingGuide from "../../features/shared/sightseeingGuide"
 
 export default function handler(
   req: NextApiRequest,
@@ -17,7 +17,7 @@ export default function handler(
   }
 
   const reports = new WeatherForecaster().GetWeatherReports();
-  const guide = sightseeingGuide.GetGuidedSightseeingLogs(slogs, reports);
+  const guide = new SightseeingGuide().GetGuidedSightseeingLogs(slogs, reports);
   
   res.status(200).json(guide);
 }

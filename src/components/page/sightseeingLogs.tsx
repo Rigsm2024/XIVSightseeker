@@ -1,8 +1,8 @@
 import { GuidedSightseeingLog, SightseeingLog } from "../../features/interface/dataClass"
 import SightseeingLogItem from "../ui/sightseeingLogItem"
 import { useEffect } from 'react';
-import { GetLatestRemainingSeconds, GetSortedSightseengLogs, LogFilterProps } from "../../features/guide/logSorter"
-import sightseeingGuide from "../../features/guide/sightseeingGuide"
+import { GetLatestRemainingSeconds, GetSortedSightseengLogs, LogFilterProps } from "../../features/shared/logSorter"
+import SightseeingGuide from "../../features/shared/sightseeingGuide"
 
 interface SightseeingLogsProps {
     logs: GuidedSightseeingLog[],
@@ -33,7 +33,7 @@ function SetRefreshEvent(logs: GuidedSightseeingLog[], updateSource: (source: Gu
             fetchWeatherReports()
                 .then(reports => {
                     const slogs = logs.map(f => f.Data);
-                    const guidedLogs = sightseeingGuide.GetGuidedSightseeingLogs(slogs, reports);
+                    const guidedLogs = new SightseeingGuide().GetGuidedSightseeingLogs(slogs, reports);
                     updateSource(guidedLogs);
                 })
                 .catch(err => console.log(err))

@@ -6,15 +6,7 @@ import { ISightseeingGuide } from "../interface/interface";
 
 class SightseeingGuide implements ISightseeingGuide {
 
-    private static instance: SightseeingGuide;
-    private constructor(){}
-
-    static getInstance(): SightseeingGuide {
-        if (!SightseeingGuide.instance) {
-            SightseeingGuide.instance = new SightseeingGuide();
-        }
-        return SightseeingGuide.instance
-    }
+    constructor(){}
 
     // Returns sightseeing logs with phase and remaining time
     GetGuidedSightseeingLogs(logs: SightseeingLog[], reports: WeatherReport[]): GuidedSightseeingLog[] {
@@ -131,5 +123,5 @@ interface AchievableTime {
     end: number;
 }
 
-export default SightseeingGuide.getInstance();
+export default SightseeingGuide;
 

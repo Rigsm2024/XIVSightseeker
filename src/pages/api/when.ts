@@ -2,8 +2,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { WeatherForecaster } from "../../features/weather/forecaster"
 import jsonRepository from "../../features/repository/jsonRepository"
-import sightseeingGuide from "../../features/guide/sightseeingGuide"
-import { GetLatestRemainingSeconds } from "@/features/guide/logSorter";
+import SightseeingGuide from "../../features/shared/sightseeingGuide"
+import { GetLatestRemainingSeconds } from "@/features/shared/logSorter";
 
 export default function handler(
     req: NextApiRequest,
@@ -35,7 +35,7 @@ export default function handler(
     console.log(reports[0].Forecasts)
 
     // Check achivables
-    const guide = sightseeingGuide.GetGuidedSightseeingLogs(targets, reports);
+    const guide = new SightseeingGuide().GetGuidedSightseeingLogs(targets, reports);
     const when = GetLatestRemainingSeconds(guide);
     console.log(`api/when. result: ${when}.`);
 
