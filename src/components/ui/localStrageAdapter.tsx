@@ -1,4 +1,4 @@
-import { LogFilterProps } from "../../features/guide/logSorter"
+import { LogFilterProps } from "../../features/shared/logSorter"
 
 const FilterLocalStrageKey = "XIVSightseeker_FilterPropsKey";
 

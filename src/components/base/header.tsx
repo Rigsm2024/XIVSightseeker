@@ -1,7 +1,7 @@
 import Image from "next/image"
 import sightseeingIcon from '../../public/icon/SightseeingLogIcon.svg'
 import MenuDialog from "../ui/menuDialog"
-import { LogFilterProps } from "@/features/guide/logSorter"
+import { LogFilterProps } from "@/features/shared/logSorter"
 import { useState } from "react"
 
 interface headerProps {

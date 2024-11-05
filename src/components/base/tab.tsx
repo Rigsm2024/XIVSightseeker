@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { playfair } from "../../pages/fonts"
-import { LogFilterProps } from "../../features/guide/logSorter"
+import { LogFilterProps } from "../../features/shared/logSorter"
 
 interface tabProps {
     filters: LogFilterProps

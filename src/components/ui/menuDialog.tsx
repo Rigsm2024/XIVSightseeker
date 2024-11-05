@@ -1,7 +1,7 @@
 import Image from "next/image"
 import githubIcon from '../../public/icon/github-mark.svg'
 import { useState } from "react";
-import { LogFilterProps } from "@/features/guide/logSorter";
+import { LogFilterProps } from "@/features/shared/logSorter";
 
 interface menuProps {
     filters: LogFilterProps

@@ -9,7 +9,7 @@ import SightseeingLogs from "../components/page/sightseeingLogs"
 import { EAchievementPhase } from '@/features/interface/enum';
 import { useEffect } from 'react';
 import { ReadFilterFromLocalStrage } from '@/components/ui/localStrageAdapter';
-import { LogFilterProps } from '@/features/guide/logSorter';
+import { LogFilterProps } from '@/features/shared/logSorter';
 
 interface SightseekerProps {
   initalLogs: SightseeingLog[];

@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { GuidedSightseeingLog } from "../../features/interface/dataClass"
-import { LogFilterProps } from "../../features/guide/logSorter"
+import { LogFilterProps } from "../../features/shared/logSorter"
 import { WriteFilterToLocalStrage } from './localStrageAdapter';
 
 
