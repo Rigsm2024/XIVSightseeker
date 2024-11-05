@@ -4,3 +4,4 @@ node_modules/
 .secret-*
 **.sample
 .DS_Store
+.vscode
