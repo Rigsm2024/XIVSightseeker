@@ -6,6 +6,7 @@ export interface GuidedSightseeingLog {
     Phase: EAchievementPhase;
     PhaseTransitionTime: number;
     Visivility: boolean;
+    IsCompleted: boolean;
 }
 
 export interface SightseeingLog {

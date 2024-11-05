@@ -8,6 +8,7 @@ interface SightseeingLogsProps {
     logs: GuidedSightseeingLog[],
     filters: LogFilterProps,
     updateLogs: (source: GuidedSightseeingLog[]) => void,
+    updateFilters: (filters: LogFilterProps) => void,
 }
 
 // Set timeout for refreshing when some achievable conditions are changed
@@ -44,10 +45,10 @@ function SetRefreshEvent(logs: GuidedSightseeingLog[], updateSource: (source: Gu
     }, [logs, updateSource]);
 }
 
-const SightseeingLogs = ({ logs, filters, updateLogs }: SightseeingLogsProps) => {
+const SightseeingLogs = ({ logs, filters, updateLogs, updateFilters }: SightseeingLogsProps) => {
 
     // Apply filter to guided sightseeing logs
-    const sortedLogs = GetSortedSightseengLogs(logs, filters)
+    const sortedLogs = GetSortedSightseengLogs(logs, filters);
 
     // Phase transition event
     SetRefreshEvent(sortedLogs, updateLogs);
@@ -57,11 +58,16 @@ const SightseeingLogs = ({ logs, filters, updateLogs }: SightseeingLogsProps) =>
             {sortedLogs
                 .filter(f => f.Visivility)
                 .map(glog => (
-                    <SightseeingLogItem key={glog.Data.ItemNo} glog={glog} />
+                    <SightseeingLogItem 
+                        key={glog.Data.ItemNo}
+                        glog={glog}
+                        filters={filters}
+                        updateFilters={updateFilters}
+                    />
                 ))
             }
         </div>
-    )
+    );
 }
 
 export default SightseeingLogs;

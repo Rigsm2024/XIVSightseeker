@@ -16,6 +16,9 @@ const config: Config = {
       fontFamily: {
         play: ['var(--font-playfair)'],
       },
+      colors: {
+        cardBase: "#333032",
+      }
     },
   },
   plugins: [],

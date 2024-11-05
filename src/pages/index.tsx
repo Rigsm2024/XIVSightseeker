@@ -1,11 +1,10 @@
 import Head from 'next/head';
 import { SightseeingLog } from "../features/interface/dataClass"
 import SightHeader from "../components/base/header"
-import FilterEditor from '@/components/ui/menuDialog';
 import SightTab from "../components/base/tab"
 import SightFooter from "../components/base/footer"
-import { UseLogsState } from "../components/ui/logsState"
 import SightseeingLogs from "../components/page/sightseeingLogs"
+import { UseLogsState } from "../components/ui/logsState"
 import { EAchievementPhase } from '@/features/interface/enum';
 import { useEffect } from 'react';
 import { ReadFilterFromLocalStrage } from '@/components/ui/localStrageAdapter';
@@ -37,6 +36,7 @@ const CreateInitialValues = (slogs: SightseeingLog[]) => {
     PhaseTransitionTime: 0,
     Phase: EAchievementPhase.None,
     Visivility: true,
+    IsCompleted: false,
   }));
 
   const initialFilters: LogFilterProps = {
@@ -45,7 +45,7 @@ const CreateInitialValues = (slogs: SightseeingLog[]) => {
     endIndex: 9,
     completed: [],
     sortOrder: 0,
-    showsComp: false,
+    showsComp: true,
   }
 
   return { glogs: initialGuidedSlogs, filters: initialFilters };
@@ -75,7 +75,7 @@ export default function Index({ initalLogs }: SightseekerProps) {
         <div className='container relative m-auto px-2 inset-x-0'>
           <SightHeader filters={filters} updateFilters={updateFilters} />
           <SightTab filters={filters} updateFilters={updateFilters} />
-          <SightseeingLogs logs={logs} filters={filters} updateLogs={updateSource} />
+          <SightseeingLogs logs={logs} filters={filters} updateLogs={updateSource} updateFilters={updateFilters} />
           <SightFooter />
         </div>
       </main>

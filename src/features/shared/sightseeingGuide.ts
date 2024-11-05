@@ -44,6 +44,7 @@ class SightseeingGuide implements ISightseeingGuide {
                 Phase: phase,
                 PhaseTransitionTime: phaseTransitionTime,
                 Visivility: true,
+                IsCompleted: false,
             }
         })
     

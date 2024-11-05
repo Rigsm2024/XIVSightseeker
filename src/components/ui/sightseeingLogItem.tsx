@@ -1,17 +1,21 @@
 import Image from "next/image"
 import alarmIcon from '../../public/icon/clock-hour-4.svg'
+import CompleteButton from "./completeButton"
 import TextDropdown from "../ui/textDropdown"
 import TimerText from "../ui/timer"
 import { GuidedSightseeingLog } from "../../features/interface/dataClass"
 import { playfair } from "../../pages/fonts"
 import { EAchievementPhase } from "@/features/interface/enum"
+import { LogFilterProps } from "@/features/shared/logSorter"
 
 interface SightseeingItemProps {
-    glog: GuidedSightseeingLog
+    glog: GuidedSightseeingLog,
+    filters: LogFilterProps,
+    updateFilters: (filters: LogFilterProps) => void,
 }
 
 // This file is focusing to Sightseeing Logs HTML only.
-const SightseeingLogItem = ({ glog }: SightseeingItemProps) => {
+const SightseeingLogItem = ({ glog, filters, updateFilters }: SightseeingItemProps) => {
 
     const log = glog.Data
     const mapUrl = `/map/${log.ItemNo.toString().padStart(3, '0')}.jpeg`
@@ -39,6 +43,9 @@ const SightseeingLogItem = ({ glog }: SightseeingItemProps) => {
                     <div className={`text-xl mb-0.5 ml-1 ${playfair.className}`}>{log.ItemNo.toString().padStart(3, '0')}</div>
                     <div>{log.AreaName}</div>
                     <div className='text-xs'>ET{log.StartHour}-{log.EndHour}</div>
+                    <div className='flex-1 flex justify-end items-center'>
+                        <CompleteButton glog={glog} filters={filters} updateFilters={updateFilters} />
+                    </div>
                 </div>
                 <div className='card-divider-h'></div>
                 <div className='flex flex-row'>

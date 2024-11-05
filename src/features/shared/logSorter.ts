@@ -16,32 +16,49 @@ export interface LogFilterProps {
 }
 
 export function GetSortedSightseengLogs(source: GuidedSightseeingLog[], props: LogFilterProps) {
-    const visivilityUpdated = SetVisivility(source, props);
-    const sorter = GetSortFunction(props);
+    const step1 = MutateVisivility(source, props);
+    const step2 = MutateCompleted(step1, props);
     
-    return visivilityUpdated.sort(sorter);
+    const sorter = GetSortFunction(props);
+    return step2.sort(sorter);
 }
 
-function SetVisivility(source: GuidedSightseeingLog[], filters: LogFilterProps) {
-    // Make base value that visivility is cleared
-    const target = source.map(glog => ({
-        Data: glog.Data,
-        Phase: glog.Phase,
-        PhaseTransitionTime: glog.PhaseTransitionTime,
-        Visivility: false
-    }));
+function MutateVisivility(source: GuidedSightseeingLog[], filters: LogFilterProps) {
+    // Clear visivility once
+    source.forEach(glog => glog.Visivility = false);
 
-    const visibles = target
+    source
         // Are items in the tab range
         .filter(f => f.Data.ItemNo >= (filters.startIndex ?? 0) && f.Data.ItemNo <= (filters.endIndex ?? 0))
 
         // Are items not completed yet
-        .filter(f => !filters.completed?.includes(f.Data.ItemNo));
-        
-    visibles.forEach(x => x.Visivility = true);
+        .filter(f => {
+            if (filters.showsComp) {
+                return true;
+            }
+            
+            return !filters.completed?.includes(f.Data.ItemNo);
+        })
 
-    // returns full glogs
-    return target;
+        // Make them visible
+        .forEach(x => x.Visivility = true);
+
+    return source;
+}
+
+function MutateCompleted(source: GuidedSightseeingLog[], filters: LogFilterProps) {
+    // Clear IsCompleted once
+    source.forEach(glog => glog.IsCompleted = false);
+
+    if (filters.completed?.length == 0) {
+        return source;
+    }
+    
+    source
+        .filter(f => filters.completed?.includes(f.Data.ItemNo))
+        .forEach(glog => glog.IsCompleted = true);
+
+    return source;
 }
 
 function GetSortFunction(filters: LogFilterProps) {
