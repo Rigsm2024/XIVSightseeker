@@ -20,7 +20,6 @@ const SightseeingLogItem = ({ glog, filters, updateFilters }: SightseeingItemPro
     const log = glog.Data
     const mapUrl = `/map/${log.ItemNo.toString().padStart(3, '0')}.jpeg`
     const mapImage = <Image src={mapUrl} width={320} height={180} alt='map' priority={false} className='left-0 right-0 m-auto' />
-    const coodinate = `X:${log.CoordinateX} Y:${log.CoordinateY}`;
     const weather1Icon = <Image src={`/img/${log.Weather1Key}.png`} width={20} height={20} alt={log.Weather1Key} title={log.Weather1Name} />
     const weather2Icon = log.Weather2Key != null ? <Image src={`/img/${log.Weather2Key}.png`} width={20} height={20} alt={log.Weather2Key} title={log.Weather2Name} /> : null
     const emoteIcon = <Image src={`/img/${log.EmoteKey}.png`} width={40} height={40} alt={log.EmoteName} />

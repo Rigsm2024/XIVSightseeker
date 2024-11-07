@@ -11,7 +11,7 @@
       { "weather_key": "clouds", "chance": 20 },
       { "weather_key": "clearSkies", "chance": 30 },
       { "weather_key": "fairSkies", "chance": 20 },
-      { "weather_key": "dustStorms", "chance": 10 },
+      { "weather_key": "wind", "chance": 10 },
       { "weather_key": "fog", "chance": 10 },
       { "weather_key": "rain", "chance": 10 }
     ],
@@ -20,7 +20,7 @@
       { "weather_key": "clouds", "chance": 20 },
       { "weather_key": "clearSkies", "chance": 30 },
       { "weather_key": "fairSkies", "chance": 20 },
-      { "weather_key": "dustStorms", "chance": 10 },
+      { "weather_key": "wind", "chance": 10 },
       { "weather_key": "fog", "chance": 10 },
       { "weather_key": "rain", "chance": 10 }
     ],
@@ -31,7 +31,7 @@
       { "weather_key": "fairSkies", "chance": 30 },
       { "weather_key": "clouds", "chance": 10 },
       { "weather_key": "rain", "chance": 5 },
-      { "weather_key": "wind", "chance": 5 }
+      { "weather_key": "showers", "chance": 5 }
     ],
   
     "westernLaNoscea": [
@@ -39,7 +39,7 @@
       { "weather_key": "clearSkies", "chance": 30 },
       { "weather_key": "fairSkies", "chance": 20 },
       { "weather_key": "clouds", "chance": 20 },
-      { "weather_key": "dustStorms", "chance": 10 },
+      { "weather_key": "wind", "chance": 10 },
       { "weather_key": "gales", "chance": 10 }
     ],
   
@@ -117,7 +117,7 @@
   
     "northShroud": [
       { "weather_key": "fog", "chance": 5 },
-      { "weather_key": "thunderstorms", "chance": 5 },
+      { "weather_key": "showers", "chance": 5 },
       { "weather_key": "rain", "chance": 15 },
       { "weather_key": "fog", "chance": 5 },
       { "weather_key": "clouds", "chance": 10 },
@@ -152,7 +152,7 @@
     ],
   
     "centralThanalan": [
-      { "weather_key": "gloom", "chance": 15 },
+      { "weather_key": "dustStorms", "chance": 15 },
       { "weather_key": "clearSkies", "chance": 40 },
       { "weather_key": "fairSkies", "chance": 20 },
       { "weather_key": "clouds", "chance": 10 },
@@ -166,11 +166,11 @@
       { "weather_key": "clouds", "chance": 10 },
       { "weather_key": "fog", "chance": 10 },
       { "weather_key": "rain", "chance": 5 },
-      { "weather_key": "gloom", "chance": 15 }
+      { "weather_key": "showers", "chance": 15 }
     ],
   
     "southernThanalan": [
-      { "weather_key": "clearSkies", "chance": 20 },
+      { "weather_key": "heatWaves", "chance": 20 },
       { "weather_key": "clearSkies", "chance": 40 },
       { "weather_key": "fairSkies", "chance": 20 },
       { "weather_key": "clouds", "chance": 10 },
@@ -201,8 +201,8 @@
     ],
   
     "coerthasCentralHighlands": [
-      { "weather_key": "thunder", "chance": 20 },
-      { "weather_key": "blizzard", "chance": 40 },
+      { "weather_key": "blizzard", "chance": 20 },
+      { "weather_key": "snow", "chance": 40 },
       { "weather_key": "fairSkies", "chance": 10 },
       { "weather_key": "clearSkies", "chance": 5 },
       { "weather_key": "clouds", "chance": 15 },
