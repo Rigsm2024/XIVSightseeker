@@ -20,6 +20,7 @@ const SightseeingLogItem = ({ glog, filters, updateFilters }: SightseeingItemPro
     const log = glog.Data
     const mapUrl = `/map/${log.ItemNo.toString().padStart(3, '0')}.jpeg`
     const mapImage = <Image src={mapUrl} width={320} height={180} alt='map' priority={false} className='left-0 right-0 m-auto' />
+    const coodinate = `X:${log.CoordinateX} Y:${log.CoordinateY}`;
     const weather1Icon = <Image src={`/img/${log.Weather1Key}.png`} width={20} height={20} alt={log.Weather1Key} title={log.Weather1Name} />
     const weather2Icon = log.Weather2Key != null ? <Image src={`/img/${log.Weather2Key}.png`} width={20} height={20} alt={log.Weather2Key} title={log.Weather2Name} /> : null
     const emoteIcon = <Image src={`/img/${log.EmoteKey}.png`} width={40} height={40} alt={log.EmoteName} />
@@ -35,6 +36,16 @@ const SightseeingLogItem = ({ glog, filters, updateFilters }: SightseeingItemPro
                 return 'waiting-for-guided';
         }
     })(glog.Phase);
+    const coordinateText = (axis: string, num: number) => {
+        const [integerPart, decimalPart] = num.toString().split(".");
+        return (
+            <>
+                <span className='text-xs'>{axis}:</span>
+                <span className='text-lg'>{integerPart}</span>
+                <span className='text-xs'>.{decimalPart ?? '0'}</span>
+            </>
+        );
+    };
 
     return (
         <div className={`${phaseClass} basis-full max-w-sm md:basis-1/2 self-start relative box-border p-1 pr-2 my-1`}>
@@ -62,7 +73,9 @@ const SightseeingLogItem = ({ glog, filters, updateFilters }: SightseeingItemPro
                                 {weather1Icon}
                                 {weather2Icon}
                             </div>
-                            <div className={`absolute bottom-0 right-0 px-1 bg-gray-800 bg-opacity-75 rounded shadow-md text-white ${playfair.className}`}>X:{log.CoordinateX} Y:{log.CoordinateY}</div>
+                            <div className={`absolute bottom-0 right-0 px-1 bg-gray-800 bg-opacity-75 rounded shadow-md text-white ${playfair.className}`}>
+                                {coordinateText("X", log.CoordinateX)} {coordinateText("Y", log.CoordinateY)}
+                            </div>
                         </div>
                     </div>
                     <div className='card-divider-v m-1'></div>
