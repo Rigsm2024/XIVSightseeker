@@ -70,6 +70,7 @@ export default function Index({ initalLogs }: SightseekerProps) {
       <Head>
         <title>XIVSightseeker</title>
         <meta name="description" content="FFXIV 新生の探検手帳特化型攻略サイト。時間と天候を加味して今どの項目が達成可能なのかを提示します。" />
+        <meta name="keywords" content="FFXIV, 探検手帳, 新生" />
       </Head>
       <main>
         <div className='container relative m-auto px-2 inset-x-0'>
