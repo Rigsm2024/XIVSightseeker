@@ -4,6 +4,9 @@ import { GetSortedSightseengLogs, LogFilterProps } from "../../features/shared/l
 
 
 export class LogsUpdaterUtils {
+    private DefaultForecastPeriods = 9;     //　3.5ｈ, 3 days in Eorzea
+    private LongTermForecastPeriods = 63;   // 24.5h, 3 weeksa in Eorzea
+
     private sorted: GuidedSightseeingLog[];
     private filters: LogFilterProps;
     private updateSource: (source: GuidedSightseeingLog[]) => void;
@@ -23,7 +26,6 @@ export class LogsUpdaterUtils {
         // 1. page rendered
         const isInitial = this.sorted.some(f => f.Phase == EAchievementPhase.None);
         if (isInitial) {
-            console.log("updateGlogs with pattern 1");
             return true;
         }
 
@@ -34,7 +36,6 @@ export class LogsUpdaterUtils {
             .filter(f2 => f2.Visivility === true)
             .some(f3 => f3.PhaseTransitionTime - currentUnixSeconds <= 0);
         if (timerEnds) {
-            console.log("updateGlogs with pattern 3");
             return true;
         }
 
@@ -42,8 +43,7 @@ export class LogsUpdaterUtils {
     }
 
     UpdateGlogs() {
-        // Long term: 24.5h of real. Default term: 3 days in Eorzea.
-        const periods = this.filters.isLongTerm ? 63 : 9;
+        const periods = this.filters.isLongTerm ? this.LongTermForecastPeriods : this.DefaultForecastPeriods;
 
         fetch('/api/guides?periods=' + periods, {
             method: 'GET',
