@@ -623,7 +623,7 @@
         "in_game_start_hour": 18,
         "in_game_end_hour": 5,
         "emote_key": "pray",
-        "weather1_key": "rain",
+        "weather1_key": "showers",
         "weather2_key": null
     },
     {
