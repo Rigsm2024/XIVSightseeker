@@ -5,7 +5,7 @@ export interface ISightseeingGuide {
 }
 
 export interface IWeatherForecaster {
-    GetWeatherReports(): WeatherReport[];
+    GetWeatherReports(periods: number): WeatherReport[];
 }
 
 export interface IRepository {

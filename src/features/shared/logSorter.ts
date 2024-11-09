@@ -13,6 +13,7 @@ export interface LogFilterProps {
     completed?: number[],
     sortOrder?: ESortOrder,
     showsComp?: boolean,
+    isLongTerm?: boolean,
 }
 
 export function GetSortedSightseengLogs(source: GuidedSightseeingLog[], props: LogFilterProps) {

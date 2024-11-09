@@ -6,14 +6,12 @@ import { ConvertToEorzeanTime } from "../util/eorzeanTime";
 
 export class WeatherForecaster implements IWeatherForecaster {
 
-    // the count of forecast periods. This means 3 days in EorzeanTime.
-    private forecastPeriodsNumber = 9;
     private algo = new WeatherAlgorithm();
 
-    GetWeatherReports(): WeatherReport[] {
+    GetWeatherReports(periods: number): WeatherReport[] {
         
         // Store the necessary computation results in an object in advance
-        const periodicSeconds = this.generateForecastUnixTimestamps(this.forecastPeriodsNumber);
+        const periodicSeconds = this.generateForecastUnixTimestamps(periods);
         const timeStructs = periodicSeconds.map(sec => {
             const eTime = ConvertToEorzeanTime(sec);
             const chance = this.algo.GetWeatherChanceAt(eTime);

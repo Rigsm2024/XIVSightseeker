@@ -4,8 +4,8 @@ import { useState } from "react";
 import { LogFilterProps } from "@/features/shared/logSorter";
 
 interface menuProps {
-    filters: LogFilterProps
-    updateFilters: (filters: LogFilterProps) => void
+    filters: LogFilterProps,
+    updateFilters: (filters: LogFilterProps) => void,
 }
 
 const MenuDialog = ({ filters, updateFilters }: menuProps) => {
@@ -18,9 +18,16 @@ const MenuDialog = ({ filters, updateFilters }: menuProps) => {
 
     const [showsComp, setComp] = useState<boolean>(filters.showsComp ?? false);
     const toggleShowsComp = () => {
-        const toggled = !showsComp
+        const toggled = !showsComp;
         setComp(toggled);
         updateFilters({ showsComp: toggled });
+    };
+
+    const [isLongTerm, setLongTerm] = useState<boolean>(filters.isLongTerm ?? false);
+    const toggleLongTerm = () => {
+        const toggled = !isLongTerm;
+        setLongTerm(toggled);
+        updateFilters({ isLongTerm: toggled });
     };
 
     // Preapre styles
@@ -40,6 +47,10 @@ const MenuDialog = ({ filters, updateFilters }: menuProps) => {
 
             <div onClick={toggleShowsComp} className={`${menuBase} ${showsComp ? "menu-selected" : ""}`}>
                 達成済みを表示
+            </div>
+            <div className='border-b border-gray-700'></div>
+            <div onClick={toggleLongTerm} className={`${menuBase} ${isLongTerm ? "menu-selected" : ""}`}>
+                長期間予報
             </div>
 
             <div className="flex justify-center py-2 mt-1">
