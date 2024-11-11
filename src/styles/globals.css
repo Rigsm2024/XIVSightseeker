@@ -217,4 +217,27 @@ body {
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
   }
+
+  .completed-animation {
+    position: relative;
+    animation: completed 0.5s;
+  }
+
+  .completed-animation div {
+    display: block;
+  }
+
+  @keyframes completed {
+    0% {
+      transform: scale(1);
+      background: transparent; 
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% { 
+      transform: scale(1);
+      background: rgb(34 197 94); 
+    }
+  }
 }
