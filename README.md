@@ -2,7 +2,7 @@
 To all Warriors of Light who want to complete Sightseeing logs.
 
 ## Production
-- [xivsightseeker](https://xivsightseeker.com/)
+- [https://xivsightseeker.com](https://xivsightseeker.com/)
 
 ## For developers
 - [Architecture](./docs/architecture.md)
