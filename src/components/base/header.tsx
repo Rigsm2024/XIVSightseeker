@@ -19,12 +19,13 @@ export default function SightHeader({filters, updateFilters}: headerProps) {
             {opens && (
                 <div onClick={cloeseDialog} className="absolute top-0 left-0 z-20 w-screen h-full"></div>
             )}
-            <div className='fixed z-20 m-3'>
-                <div className={`menu-button ${opens ? 'open' : ''}`} onClick={opens ? cloeseDialog : openDialog}>
+            <div className='fixed z-20 m-3 flex flex-col items-center rounded-lg px-2 py-1' style={{ backgroundColor: 'rgb(var(--background-end-rgb))' }} onClick={opens ? cloeseDialog : openDialog}>
+                <div className={`menu-button ${opens ? 'open' : ''}`}>
                     <span className='menu-line'></span>
                     <span className='menu-line'></span>
                     <span className='menu-line'></span>
                 </div>
+                <span className='text-xs w-[40px] text-center'>{opens ? 'CLOSE' : 'MENU'}</span>
                 {opens && (
                     <MenuDialog filters={filters} updateFilters={updateFilters} />
                 )}
