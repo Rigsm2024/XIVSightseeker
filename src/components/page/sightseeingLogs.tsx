@@ -14,7 +14,7 @@ const SightseeingLogs = ({ logs, filters, updateFilters }: SightseeingLogsProps)
     const sortedLogs = GetSortedSightseengLogs(logs, filters);
 
     return (
-        <div className='w-full flex flex-row flex-wrap justify-center md:justify-between xl:justify-start lg:px-14 border-b prefer-border-color p-2 mr-1 my-2'>
+        <div className='w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 items-start border-b prefer-border-color py-4 my-2'>
             {sortedLogs
                 .filter(f => f.Visivility)
                 .map(glog => (

@@ -15,7 +15,7 @@ export default function SightHeader({filters, updateFilters}: headerProps) {
     const cloeseDialog = () => setOpens(false);
 
     return (
-        <div className='container flex flex-row flex-row-reverse items-center place-content-between border-solid border-b prefer-border-color'>
+        <div className='w-full flex flex-row flex-row-reverse items-center place-content-between border-solid border-b prefer-border-color'>
             {opens && (
                 <div onClick={cloeseDialog} className="absolute top-0 left-0 z-20 w-screen h-full"></div>
             )}

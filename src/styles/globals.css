@@ -78,6 +78,7 @@ body {
     box-shadow: 0 0 3px black;
     border: 1px solid black;
     overflow: hidden;
+    height: 100%;
   }
 
     .currently-achievable .sightseeing-log-container::before {
