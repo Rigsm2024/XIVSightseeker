@@ -1,3 +1,4 @@
+import React from "react"
 import Image from "next/image"
 import alarmIcon from '../../public/icon/clock-hour-4.svg'
 import CompleteButton from "./completeButton"
@@ -90,4 +91,15 @@ const SightseeingLogItem = ({ glog, filters, updateFilters }: SightseeingItemPro
     )
 }
 
-export default SightseeingLogItem;
+export default React.memo(SightseeingLogItem, (prevProps, nextProps) => {
+    // ItemNoが同じで、完了状態と表示状態が同じなら再レンダリング不要
+    return (
+        prevProps.glog.Data.ItemNo === nextProps.glog.Data.ItemNo &&
+        prevProps.glog.IsCompleted === nextProps.glog.IsCompleted &&
+        prevProps.glog.Visivility === nextProps.glog.Visivility &&
+        // PhaseとPhaseTransitionTimeは比較しない（タイマー更新のため）
+        // filtersの参照が同じなら再レンダリング不要
+        prevProps.filters === nextProps.filters &&
+        prevProps.updateFilters === nextProps.updateFilters
+    );
+});

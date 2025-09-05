@@ -14,23 +14,26 @@ export const UseLogsState = (source: GuidedSightseeingLog[], filterProps: LogFil
     const logsUpdater = SetLogsUpdater(logs, filters, updateSource);
 
     const updateFilters = useCallback((newFilters: LogFilterProps) => {
-        // update difference only
-        const updated = {
-            tab: newFilters.tab ?? filters.tab,
-            startIndex: newFilters.startIndex ?? filters.startIndex,
-            endIndex: newFilters.endIndex ?? filters.endIndex,
-            completed: newFilters.completed ?? filters.completed,
-            sortOrder: newFilters.sortOrder ?? filters.sortOrder,
-            showsComp: newFilters.showsComp ?? filters.showsComp,
-            isLongTerm: newFilters.isLongTerm ?? filters.isLongTerm,
-        };
-        setFilters(updated);
-        WriteFilterToLocalStrage(updated);
+        setFilters(prevFilters => {
+            // update difference only
+            const updated = {
+                tab: newFilters.tab ?? prevFilters.tab,
+                startIndex: newFilters.startIndex ?? prevFilters.startIndex,
+                endIndex: newFilters.endIndex ?? prevFilters.endIndex,
+                completed: newFilters.completed ?? prevFilters.completed,
+                sortOrder: newFilters.sortOrder ?? prevFilters.sortOrder,
+                showsComp: newFilters.showsComp ?? prevFilters.showsComp,
+                isLongTerm: newFilters.isLongTerm ?? prevFilters.isLongTerm,
+            };
+            WriteFilterToLocalStrage(updated);
 
-        if (filters.isLongTerm == false && newFilters.isLongTerm === true) {
-            logsUpdater.UpdateGLogsForceWith(updated);
-        }
-    }, [filters]);
+            if (prevFilters.isLongTerm == false && newFilters.isLongTerm === true) {
+                logsUpdater.UpdateGLogsForceWith(updated);
+            }
+            
+            return updated;
+        });
+    }, [logsUpdater]);
 
     return { logs, filters, updateFilters }
 }

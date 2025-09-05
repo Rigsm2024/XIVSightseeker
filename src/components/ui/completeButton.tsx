@@ -37,4 +37,12 @@ const CompleteButton = ({glog, filters, updateFilters}: completeProps) => {
     );
 };
 
-export default CompleteButton;
+export default React.memo(CompleteButton, (prevProps, nextProps) => {
+    // ItemNoと完了状態が同じなら再レンダリング不要
+    return (
+        prevProps.glog.Data.ItemNo === nextProps.glog.Data.ItemNo &&
+        prevProps.glog.IsCompleted === nextProps.glog.IsCompleted &&
+        prevProps.filters === nextProps.filters &&
+        prevProps.updateFilters === nextProps.updateFilters
+    );
+});

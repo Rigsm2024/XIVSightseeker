@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import arrowIcon from '../../public/icon/arrow-down.svg'
+import React, { useState } from 'react';
 import { SightseeingLog } from "../../features/interface/dataClass"
 
 interface buttonProps {
@@ -46,4 +45,4 @@ const TextDropdown = (log: SightseeingLog) => {
     );
 };
 
-export default TextDropdown;
+export default React.memo(TextDropdown);
