@@ -13,6 +13,8 @@ interface MapModalProps {
 const MapModal: React.FC<MapModalProps> = ({ isOpen, onClose, glog }) => {
     const log = glog.Data
     const mapUrl = `/map/${log.ItemNo.toString().padStart(3, '0')}.webp`
+    const [imageLoaded, setImageLoaded] = React.useState(false)
+    
     useEffect(() => {
         const handleEsc = (e: KeyboardEvent) => {
             if (e.key === 'Escape') {
@@ -22,6 +24,7 @@ const MapModal: React.FC<MapModalProps> = ({ isOpen, onClose, glog }) => {
         if (isOpen) {
             document.addEventListener('keydown', handleEsc)
             document.body.style.overflow = 'hidden'
+            setImageLoaded(false) // Reset when opening
         }
         return () => {
             document.removeEventListener('keydown', handleEsc)
@@ -56,12 +59,22 @@ const MapModal: React.FC<MapModalProps> = ({ isOpen, onClose, glog }) => {
                     </button>
                 </div>
                 <div className="p-2 sm:p-6 overflow-auto flex-1">
-                    {/* Imageコンポーネントを使うと初回が信じられないくらい遅くなるため、通常のimgにする */}
-                    <img
-                        src={mapUrl}
-                        alt={log.AreaName}
-                        className="w-full h-auto"
-                    />
+                    <div className="relative w-full">
+                        {/* 16:9のアスペクト比を保持 */}
+                        <div className="pb-[56.25%]"></div>
+                        {!imageLoaded && (
+                            <div className="absolute inset-0 flex items-center justify-center bg-gray-700">
+                                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-400" />
+                            </div>
+                        )}
+                        {/* Imageコンポーネントを使うと初回が信じられないくらい遅くなるため、通常のimgにする */}
+                        <img
+                            src={mapUrl}
+                            alt={log.AreaName}
+                            className={`absolute inset-0 w-full h-full object-contain ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                            onLoad={() => setImageLoaded(true)}
+                        />
+                    </div>
                 </div>
             </div>
         </div>
