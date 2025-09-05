@@ -1,11 +1,10 @@
-import React, { useState } from "react"
+import React from "react"
 import Image from "next/image"
 import alarmIcon from '../../public/icon/clock-hour-4.svg'
 import CompleteButton from "./completeButton"
 import TextDropdown from "../ui/textDropdown"
 import TimerText from "../ui/timer"
-import LazyMapImage from "./lazyMapImage"
-import MapModal from "./mapModal"
+import MapImage from "./mapImage"
 import { GuidedSightseeingLog } from "../../features/interface/dataClass"
 import { playfair } from "../../pages/fonts"
 import { EAchievementPhase } from "@/features/interface/enum"
@@ -19,7 +18,6 @@ interface SightseeingItemProps {
 
 // This file is focusing to Sightseeing Logs HTML only.
 const SightseeingLogItem = ({ glog, filters, updateFilters }: SightseeingItemProps) => {
-    const [isModalOpen, setIsModalOpen] = useState(false)
 
     const log = glog.Data
     const mapUrl = `/map/${log.ItemNo.toString().padStart(3, '0')}.webp`
@@ -70,10 +68,12 @@ const SightseeingLogItem = ({ glog, filters, updateFilters }: SightseeingItemPro
                         <div className='flex-1 flex items-center'>
                             <div className='relative w-full rounded overflow-hidden'>
                                 <div className='w-full pb-[56.25%]'></div>
-                                <LazyMapImage 
+                                <MapImage 
                                     mapUrl={mapUrl} 
                                     alt={`Map for ${log.AreaName}`}
-                                    onClick={() => setIsModalOpen(true)}
+                                    glog={glog}
+                                    filters={filters}
+                                    updateFilters={updateFilters}
                                 />
                                 <div className='absolute top-0 right-0 m-1 flex flex-row gap-1'>
                                     {weather1Icon}
@@ -94,13 +94,6 @@ const SightseeingLogItem = ({ glog, filters, updateFilters }: SightseeingItemPro
                 <TextDropdown {...log}/>
             </div>
             <div className='metalic-border'></div>
-            <MapModal 
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                glog={glog}
-                filters={filters}
-                updateFilters={updateFilters}
-            />
         </div>
     )
 }

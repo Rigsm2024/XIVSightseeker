@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import Image from 'next/image'
 import { GuidedSightseeingLog } from '../../features/interface/dataClass'
 import { playfair } from '../../pages/fonts'
 
@@ -57,14 +56,11 @@ const MapModal: React.FC<MapModalProps> = ({ isOpen, onClose, glog }) => {
                     </button>
                 </div>
                 <div className="p-2 sm:p-6 overflow-auto flex-1">
-                    <Image
+                    {/* Imageコンポーネントを使うと初回が信じられないくらい遅くなるため、通常のimgにする */}
+                    <img
                         src={mapUrl}
                         alt={log.AreaName}
-                        width={1000}
-                        height={563}
-                        quality={100}
                         className="w-full h-auto"
-                        priority
                     />
                 </div>
             </div>
