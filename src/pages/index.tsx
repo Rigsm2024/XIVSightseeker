@@ -61,7 +61,23 @@ export default function Index({ initalLogs }: SightseekerProps) {
       <Head>
         <title>XIVSightseeker</title>
         <meta name="description" content="FFXIV 新生の探検手帳特化型攻略サイト。時間と天候を加味して今どの項目が達成可能なのかを提示します。" />
-        <meta name="keywords" content="FFXIV, 探検手帳, 新生" />
+        <meta name="keywords" content="FFXIV, FF14, 探検手帳, 新生, ファイナルファンタジー14, 攻略, 天候, エオルゼア時間" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://xivsightseeker.com" />
+        
+        {/* OGP tags */}
+        <meta property="og:title" content="XIVSightseeker - FFXIV新生探検手帳攻略サイト" />
+        <meta property="og:description" content="FFXIV 新生の探検手帳特化型攻略サイト。時間と天候を加味して今どの項目が達成可能なのかを提示します。" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://xivsightseeker.com" />
+        <meta property="og:site_name" content="XIVSightseeker" />
+        <meta property="og:locale" content="ja_JP" />
+        
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="XIVSightseeker - FFXIV新生探検手帳攻略サイト" />
+        <meta name="twitter:description" content="FFXIV 新生の探検手帳特化型攻略サイト。時間と天候を加味して今どの項目が達成可能なのかを提示します。" />
       </Head>
       <main>
         <div className='container relative m-auto px-2 inset-x-0'>
