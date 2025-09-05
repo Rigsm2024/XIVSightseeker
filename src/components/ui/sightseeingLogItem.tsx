@@ -1,9 +1,11 @@
-import React from "react"
+import React, { useState } from "react"
 import Image from "next/image"
 import alarmIcon from '../../public/icon/clock-hour-4.svg'
 import CompleteButton from "./completeButton"
 import TextDropdown from "../ui/textDropdown"
 import TimerText from "../ui/timer"
+import LazyMapImage from "./lazyMapImage"
+import MapModal from "./mapModal"
 import { GuidedSightseeingLog } from "../../features/interface/dataClass"
 import { playfair } from "../../pages/fonts"
 import { EAchievementPhase } from "@/features/interface/enum"
@@ -17,10 +19,10 @@ interface SightseeingItemProps {
 
 // This file is focusing to Sightseeing Logs HTML only.
 const SightseeingLogItem = ({ glog, filters, updateFilters }: SightseeingItemProps) => {
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     const log = glog.Data
     const mapUrl = `/map/${log.ItemNo.toString().padStart(3, '0')}.webp`
-    const mapImage = <Image src={mapUrl} fill sizes="(max-width: 640px) 100vw, 380px" alt='map' priority={false} className='object-cover' />
     const weather1Icon = <Image src={`/img/${log.Weather1Key}.webp`} width={20} height={20} alt={log.Weather1Key} title={log.Weather1Name} />
     const weather2Icon = log.Weather2Key != null ? <Image src={`/img/${log.Weather2Key}.webp`} width={20} height={20} alt={log.Weather2Key} title={log.Weather2Name} /> : null
     const emoteIcon = <Image src={`/img/${log.EmoteKey}.webp`} width={40} height={40} alt={log.EmoteName} />
@@ -68,7 +70,11 @@ const SightseeingLogItem = ({ glog, filters, updateFilters }: SightseeingItemPro
                         <div className='flex-1 flex items-center'>
                             <div className='relative w-full rounded overflow-hidden'>
                                 <div className='w-full pb-[56.25%]'></div>
-                                {mapImage}
+                                <LazyMapImage 
+                                    mapUrl={mapUrl} 
+                                    alt={`Map for ${log.AreaName}`}
+                                    onClick={() => setIsModalOpen(true)}
+                                />
                                 <div className='absolute top-0 right-0 m-1 flex flex-row gap-1'>
                                     {weather1Icon}
                                     {weather2Icon}
@@ -88,6 +94,13 @@ const SightseeingLogItem = ({ glog, filters, updateFilters }: SightseeingItemPro
                 <TextDropdown {...log}/>
             </div>
             <div className='metalic-border'></div>
+            <MapModal 
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                glog={glog}
+                filters={filters}
+                updateFilters={updateFilters}
+            />
         </div>
     )
 }
