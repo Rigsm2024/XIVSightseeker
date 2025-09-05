@@ -54,7 +54,7 @@ const MenuDialog = ({ filters, updateFilters }: menuProps) => {
             </div>
 
             <div className="flex justify-center py-2 mt-1">
-                <a href='https://github.com/Rigsm2024/XIVSightseeker' title='source code' className='relative'>
+                <a href='https://github.com/Rigsm2024/XIVSightseeker' title='source code' className='relative' target='_blank' rel='noopener noreferrer'>
                     <Image
                         src={githubIcon}
                         width={24}
