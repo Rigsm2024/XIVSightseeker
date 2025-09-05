@@ -23,13 +23,7 @@ export class LogsUpdaterUtils {
     }
 
     DetectUpdateNeed(): boolean {
-        // 1. page rendered
-        const isInitial = this.sorted.some(f => f.Phase == EAchievementPhase.None);
-        if (isInitial) {
-            return true;
-        }
-
-        // 2. some items timer became 00:00
+        // Check if any visible items' timer has reached 00:00
         const currentUnixSeconds = Math.floor(Date.now() / 1000);
         const timerEnds = this.sorted
             .filter(f1 => f1.Phase !== EAchievementPhase.NotAchievableForAWhile)

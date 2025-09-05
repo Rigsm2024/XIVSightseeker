@@ -59,7 +59,7 @@ const SetLogsUpdater = (glogs: GuidedSightseeingLog[], filters: LogFilterProps, 
 export const DefaultFilterValue: LogFilterProps = {
     tab: 0,
     startIndex: 1,
-    endIndex: 9,
+    endIndex: 20,
     completed: [],
     sortOrder: 0,
     showsComp: true,

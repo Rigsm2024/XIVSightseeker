@@ -6,19 +6,28 @@ interface CountdownTimerProps {
 }
 
 const CountdownTimer: React.FC<CountdownTimerProps> = ({ initialTime, phase }) => {
-    const [currentTime, setTimeLeft] = useState<number | null>(null);
+    // SSRでもクライアントでも同じ計算をする
+    const calculateRemaining = () => {
+        const now = Math.floor(Date.now() / 1000);
+        return Math.max(0, initialTime - now);
+    };
+    
+    // SSRでも初期値を計算（ただし1-2秒のズレは出る）
+    const [remainingTime, setRemainingTime] = useState<number>(calculateRemaining());
 
     useEffect(() => {
-        const currentUnixSeconds = Math.floor(Date.now() / 1000);
+        // クライアント側で正確な値に更新
+        setRemainingTime(calculateRemaining());
+        
         const intervalTag = setInterval(() => {
-            setTimeLeft(currentUnixSeconds);
+            setRemainingTime(calculateRemaining());
         }, 1000);
 
         return () => clearInterval(intervalTag);
-    }, [currentTime]);
+    }, [initialTime]);
 
-    const formatTime = (currentTimeArg: number) => {
-        const remainingSeconds = initialTime - currentTimeArg
+    const formatTime = (seconds: number) => {
+        const remainingSeconds = seconds
         if (remainingSeconds <= 0) {
             return '00:00'
         }
@@ -36,7 +45,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ initialTime, phase }) =
         }
     };
 
-    return <div className='w-14'>{(currentTime != null) ? formatTime(currentTime) : '--:--'}</div>
+    return <div className='w-14' suppressHydrationWarning>{formatTime(remainingTime)}</div>
 };
 
 export default function TimerText({initialTime, phase}: CountdownTimerProps) {
@@ -72,7 +81,7 @@ export default function TimerText({initialTime, phase}: CountdownTimerProps) {
 
         case 0:
         default:
-            return <div className='text-gray-400'>Loading...</div>
+            return <div className='text-gray-400'>--:--</div>
             
     }
 }
