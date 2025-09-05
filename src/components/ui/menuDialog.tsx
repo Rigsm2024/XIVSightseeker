@@ -53,6 +53,21 @@ const MenuDialog = ({ filters, updateFilters }: menuProps) => {
                 長期間予報
             </div>
 
+            <div className='mt-3'></div>
+
+            <div onClick={() => { 
+                const allItemNos = Array.from({ length: 80 }, (_, i) => i + 1);
+                updateFilters({ completed: allItemNos }); 
+            }} className={menuBase}>
+                全て達成済みにする
+            </div>
+            <div className='border-b border-gray-700'></div>
+            <div onClick={() => { 
+                updateFilters({ completed: [] }); 
+            }} className={menuBase}>
+                全て未達成にする
+            </div>
+
             <div className="flex justify-center py-2 mt-1">
                 <a href='https://github.com/Rigsm2024/XIVSightseeker' title='source code' className='relative' target='_blank' rel='noopener noreferrer'>
                     <Image
