@@ -18,11 +18,11 @@ interface SightseeingItemProps {
 const SightseeingLogItem = ({ glog, filters, updateFilters }: SightseeingItemProps) => {
 
     const log = glog.Data
-    const mapUrl = `/map/${log.ItemNo.toString().padStart(3, '0')}.jpeg`
+    const mapUrl = `/map/${log.ItemNo.toString().padStart(3, '0')}.webp`
     const mapImage = <Image src={mapUrl} width={320} height={180} alt='map' priority={false} className='left-0 right-0 m-auto' />
-    const weather1Icon = <Image src={`/img/${log.Weather1Key}.png`} width={20} height={20} alt={log.Weather1Key} title={log.Weather1Name} />
-    const weather2Icon = log.Weather2Key != null ? <Image src={`/img/${log.Weather2Key}.png`} width={20} height={20} alt={log.Weather2Key} title={log.Weather2Name} /> : null
-    const emoteIcon = <Image src={`/img/${log.EmoteKey}.png`} width={40} height={40} alt={log.EmoteName} />
+    const weather1Icon = <Image src={`/img/${log.Weather1Key}.webp`} width={20} height={20} alt={log.Weather1Key} title={log.Weather1Name} />
+    const weather2Icon = log.Weather2Key != null ? <Image src={`/img/${log.Weather2Key}.webp`} width={20} height={20} alt={log.Weather2Key} title={log.Weather2Name} /> : null
+    const emoteIcon = <Image src={`/img/${log.EmoteKey}.webp`} width={40} height={40} alt={log.EmoteName} />
     const phaseClass = ((phase) => {
         switch(phase) {
             case EAchievementPhase.CurrentlyAchievable:
